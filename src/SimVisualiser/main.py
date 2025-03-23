@@ -2,6 +2,12 @@ import pygame
 import math
 from src.SimVisualiser.RoleDict import RoleImgDict
 
+class GameVisualiser:
+
+    def __init__(self):
+        self.players = {}
+        self.story_teller = None
+
 def Display(game_players):
     # Initialize pygame
     pygame.init()
@@ -74,10 +80,6 @@ def Display(game_players):
 
     # Update ROOM_CENTER to be the center of the main room
     ROOM_CENTER = (main_room.x + main_room.width // 2, main_room.y + main_room.height // 2)
-
-    # Game loop
-    running = True
-    clock = pygame.time.Clock()
 
     # Game loop
     running = True

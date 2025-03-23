@@ -49,7 +49,7 @@ class StoryTeller:
     
     def RunNight(self):
         self.night_count += 1
-        print(f'\nRunning night {self.night_count}')
+        #print(f'\nRunning night {self.night_count}')
 
         ##################################################
         ##################################################
@@ -108,23 +108,25 @@ class StoryTeller:
         # Wake up everyone else
 
         # Arbitrary rule that game lasts 5 nights for now
-        if self.night_count > 4:
+        if self.night_count > 1e6:
             self.game_over = True
         return
 
     def RunDay(self):
-        print(f'Running day {self.night_count}')
+        #print(f'Running day {self.night_count}')
         # Run Day
         return
 
     def RunTownSquare(self):
-        print(f'Calling Town Square!')
+        #print(f'Calling Town Square!')
         # Run Town Square
-        print(f'Everyone goes to sleep!')
+        #print(f'Everyone goes to sleep!')
+        return
         
 
     def CheckCharacterWake(self, player):
-        print(f'should we wake {player.player_name} the {player.character.character_name}')
+        #print(f'should we wake {player.player_name} the {player.character.character_name}')
+        return
 
     def CheckGameOver(self):
         return self.game_over

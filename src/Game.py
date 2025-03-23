@@ -1,7 +1,7 @@
 from src.StoryTeller import StoryTeller
 from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
-from src.SimVisualiser.main import Display
+from src.SimVisualiser.GameVisualiser import GameVisualiser
 
 class Game:
 
@@ -18,22 +18,25 @@ class Game:
                 self.players[player_name] = 0
         
         self.story_teller = StoryTeller(self.players, self.script, self.player_count)
-    
+        self.game_visualiser = None
+
     def GenerateGame(self):
         if self.script == "TB":
             character_type_dist = GetBaseCharacterTypeDistribution(self.player_count)
             character_list, self.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
             self.PrintPlayers(self.players, self.demon_bluffs)
-            Display(self.players)
+            self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
+            self.game_visualiser.Display()
 
 
     def RunGame(self):
+        self.game_visualiser.Display()
         while not self.story_teller.CheckGameOver():
             self.story_teller.RunNight()
             self.story_teller.RunDay()
             self.story_teller.RunTownSquare()
-
+            self.game_visualiser.Display()
 
     @staticmethod
     def PrintCharacters(character_list):
