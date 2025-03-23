@@ -26,6 +26,7 @@ from src.Characters.Minion.C_Baron import C_Baron
 from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
 from src.Characters.Demon.C_Imp import C_Imp
 
+
 class StoryTeller:
 
     #######################################################

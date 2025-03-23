@@ -1,13 +1,14 @@
 from src.StoryTeller import StoryTeller
 from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
+from src.SimVisualiser.main import Display
 
 class Game:
 
-    def __init__(self, script='TB', player_count=10, player_names=None):
+    def __init__(self, script='TB', player_count=12, player_names=None):
         self.script = script
         self.player_count = player_count
-
+    
         self.players = {} # Dictionary of player names - player object
         if player_names is None:
             for _ in range(self.player_count):
@@ -24,6 +25,7 @@ class Game:
             character_list, self.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
             self.PrintPlayers(self.players, self.demon_bluffs)
+            Display(self.players)
 
 
     def RunGame(self):
