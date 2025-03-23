@@ -78,7 +78,7 @@ class StoryTeller:
             ###
             ###########################################
             ###########################################
-
+            print("\nStoryteller gives demon info...")
             _, imp_player = CheckIfCharacterInPlay(C_Imp, self.players)
             print(f'\nStory teller thinks about waking up {imp_player.player_name}, the Imp to give them beginning info' )
             action = A_DemonFirstNightInfo(self.players)
