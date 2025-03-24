@@ -1,5 +1,6 @@
 from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
+from src.Utils.FindPlayer import *
 from src.Characters import *
 from src.Actions import *
 import time
@@ -27,7 +28,7 @@ from src.Characters.Minion.C_Spy import C_Spy
 from src.Characters.Minion.C_Baron import C_Baron
 from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
 from src.Characters.Demon.C_Imp import C_Imp
-
+from src.StoryTeller.StoryTellerBB import StoryTellerBB
 
 class StoryTeller:
 
@@ -41,7 +42,9 @@ class StoryTeller:
 
     def __init__(self, _players, _scipt, _player_count):
 
-        self.BT = StoryTellerBT(players=_players, scipt=_scipt, player_count=_player_count)
+        # Create BB
+        self.BB = StoryTellerBB(players=_players, scipt=_scipt, player_count=_player_count)
+        self.BT = StoryTellerBT(story_teller=self)
 
         
     def tick(self):
@@ -49,7 +52,7 @@ class StoryTeller:
         
         return action
     
-    # Change this to a behavior tree
+    # NOT IN USE -> changed to BT
     def RunNight(self):
         self.night_count += 1
         #print(f'\nRunning night {self.night_count}')
@@ -115,21 +118,6 @@ class StoryTeller:
             self.game_over = True
         return
 
-    def RunDay(self):
-        #print(f'Running day {self.night_count}')
-        # Run Day
-        return
-
-    def RunTownSquare(self):
-        #print(f'Calling Town Square!')
-        # Run Town Square
-        #print(f'Everyone goes to sleep!')
-        return
-        
-
-    def CheckCharacterWake(self, player):
-        #print(f'should we wake {player.player_name} the {player.character.character_name}')
-        return
 
     def CheckGameOver(self):
         return self.game_over

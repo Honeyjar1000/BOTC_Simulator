@@ -3,6 +3,7 @@ from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
 from src.Characters import *
 from src.Actions import *
+from src.Utils.FindPlayer import CheckIfCharacterInPlay
 
 from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
 from src.Characters.TownsFolk.C_Librarian import C_Librarian

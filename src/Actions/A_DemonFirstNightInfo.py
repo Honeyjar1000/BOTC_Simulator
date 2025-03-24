@@ -1,30 +1,21 @@
 from src.Actions.Action import Action
-from src.Utils.CreatePlayers import CheckIfCharacterInPlay
 from src.Utils.ActionOutputData import ActionOutputData
-from src.Characters.Minion.C_Poisoner import C_Poisoner
-from src.Characters.Minion.C_Baron import C_Baron
-from src.Characters.Minion.C_Spy import C_Spy
-from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
-from src.Characters.Demon.C_Imp import C_Imp
+from src.Utils.FindPlayer import GetMinionPlayers, GetDemonPlayer
 
 class A_DemonFirstNightInfo(Action):
     
-    def __init__(self, players):
-        self.player_minions = self.GetMinionPlayers(players)
+    def __init__(self, players, demon_bluffs):
+        self.player_minions = GetMinionPlayers(players)
+        self.demon_bluffs = demon_bluffs
+        self.demon_player = GetDemonPlayer(players)
 
     def __str__(self):
         return "[Demon First Night Info]"
 
-    def GetMinionPlayers(self, players):
-        player_minions = []
-        minions = [C_Poisoner, C_Baron, C_Spy, C_ScarletWoman]
-        for minion in minions:
-            b_in_play, player = CheckIfCharacterInPlay(minion, players)
-            if b_in_play:
-                player_minions.append(player)
-        return player_minions
-
     def TakeAction(self):
         action_output = ActionOutputData()
         action_output.data['minion_players'] = self.player_minions
+        action_output.data['demon_bluffs'] = self.demon_bluffs
+        action_output.data['demon_player'] = self.demon_player
         return action_output
+

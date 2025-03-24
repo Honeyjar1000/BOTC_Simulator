@@ -7,9 +7,12 @@ import time
 class Game:
 
     def __init__(self, script='TB', player_count=12, player_names=None):
+
+        # Important Variables
         self.script = script
         self.player_count = player_count
     
+        # Create Players
         self.players = {} # Dictionary of player names - player object
         if player_names is None:
             for _ in range(self.player_count):
@@ -18,24 +21,28 @@ class Game:
             for player_name in range(player_names):
                 self.players[player_name] = 0
         
+        # Story Teller
         self.story_teller = StoryTeller(self.players, self.script, self.player_count)
+        
+        # VIsualiser component
         self.game_visualiser = None
 
     def GenerateGame(self):
         if self.script == "TB":
             character_type_dist = GetBaseCharacterTypeDistribution(self.player_count)
-            character_list, self.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
+            character_list, self.story_teller.BB.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
-            self.PrintPlayers(self.players, self.demon_bluffs)
-            self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
-            self.game_visualiser.Display()
+            self.PrintPlayers(self.players, self.story_teller.BB.demon_bluffs)
+            #self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
+            #self.game_visualiser.Display()
 
 
     def RunGame(self):
         while True:
+            print("TICK!!!!!!!!!!!")
             self.story_teller.tick()
-            self.game_visualiser.Display()
-            time.sleep(1)
+            #self.game_visualiser.Display()
+            time.sleep(5)
 
 
         '''
