@@ -1,5 +1,5 @@
 from src.Player.Player import Player
-from src.StoryTeller import StoryTeller
+from src.StoryTeller.StoryTeller import StoryTeller
 import pygame
 import math
 from src.SimVisualiser.RoleDict import RoleImgDict

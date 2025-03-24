@@ -3,6 +3,8 @@ from src.Utils.CreatePlayers import *
 from src.Characters import *
 from src.Actions import *
 import time
+from src.StoryTeller.StoryTellerBT import StoryTellerBT
+
 from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
 from src.Characters.TownsFolk.C_Librarian import C_Librarian
 from src.Characters.TownsFolk.C_Investigator import C_Investigator
@@ -37,16 +39,17 @@ class StoryTeller:
     #######################################################
     #######################################################
 
-    def __init__(self, players, scipt, player_count):
+    def __init__(self, _players, _scipt, _player_count):
 
-        self.script = scipt # Script
-        self.player_count = player_count    # Number of Player
-        self.demon_bluffs = []  # Demon Bluffs
-        self.first_night_order, self.other_night_order = GetCharacterNightOrder(self.script) # Night Character Order
-        self.night_count = 0    # Night Count
-        self.game_over = False  # Game over condition
-        self.players = players # Dictionary of player names - player object
+        self.BT = StoryTellerBT(players=_players, scipt=_scipt, player_count=_player_count)
+
+        
+    def tick(self):
+        action = self.BT.tick()
+        
+        return action
     
+    # Change this to a behavior tree
     def RunNight(self):
         self.night_count += 1
         #print(f'\nRunning night {self.night_count}')

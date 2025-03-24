@@ -1,7 +1,8 @@
-from src.StoryTeller import StoryTeller
+from src.StoryTeller.StoryTeller import StoryTeller
 from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
 from src.SimVisualiser.GameVisualiser import GameVisualiser
+import time
 
 class Game:
 
@@ -31,12 +32,20 @@ class Game:
 
 
     def RunGame(self):
-        self.game_visualiser.Display()
+        while True:
+            self.story_teller.tick()
+            self.game_visualiser.Display()
+            time.sleep(1)
+
+
+        '''
+        
         while not self.story_teller.CheckGameOver():
             self.story_teller.RunNight()
             self.story_teller.RunDay()
             self.story_teller.RunTownSquare()
-            self.game_visualiser.Display()
+            self.game_visualiser.Display()'
+        '''
 
     @staticmethod
     def PrintCharacters(character_list):
