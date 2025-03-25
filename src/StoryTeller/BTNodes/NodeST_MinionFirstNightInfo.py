@@ -27,7 +27,7 @@ from src.Characters.Minion.C_Spy import C_Spy
 from src.Characters.Minion.C_Baron import C_Baron
 from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
 from src.Characters.Demon.C_Imp import C_Imp
-
+from time import sleep
 
 # Define a simple action node
 class NodeST_MinionFirstNightInfo(py_trees.behaviour.Behaviour):
@@ -55,6 +55,7 @@ class NodeST_MinionFirstNightInfo(py_trees.behaviour.Behaviour):
                 action = A_MinionFirstNightInfo(self.black_board.players)
                 current_player.WakeAtNight(action)
                 current_player.bb.print_beliefs()
+                sleep(1)
 
         return py_trees.common.Status.SUCCESS
         

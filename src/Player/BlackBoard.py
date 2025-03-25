@@ -9,6 +9,7 @@ class BlackBoard:
             "demon_player": None,
             "minion_players": None,
             "demon_bluffs": None,
+            "washer_woman_info": None
         }
 
         self.data_desc = {
@@ -16,7 +17,8 @@ class BlackBoard:
             "player_character": 'Their character is',
             "demon_player": 'The demon is',
             "minion_players": 'The minions are',
-            "demon_bluffs": 'The demon bluffs are '
+            "demon_bluffs": 'The demon bluffs are ',
+            "washer_woman_info": 'WasherWoman info: '
         }
 
     def update(self, ActionOutputs:ActionOutputData):

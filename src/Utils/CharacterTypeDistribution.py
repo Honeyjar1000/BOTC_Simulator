@@ -15,6 +15,24 @@ def GetBaseCharacterTypeDistribution(player_count):
         case 15: return [9, 2, 3]
 
 
+def GetAllTownsfolkRolls():
+    from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
+    from src.Characters.TownsFolk.C_Librarian import C_Librarian
+    from src.Characters.TownsFolk.C_Investigator import C_Investigator
+    from src.Characters.TownsFolk.C_Chef import C_Chef
+    from src.Characters.TownsFolk.C_Empath import C_Empath
+    from src.Characters.TownsFolk.C_FortuneTeller import C_FortuneTeller
+    from src.Characters.TownsFolk.C_Undertaker import C_Undertaker
+    from src.Characters.TownsFolk.C_Monk import C_Monk
+    from src.Characters.TownsFolk.C_RavenKeeper import C_RavenKeeper
+    from src.Characters.TownsFolk.C_Virgin import C_Virgin
+    from src.Characters.TownsFolk.C_Slayer import C_Slayer
+    from src.Characters.TownsFolk.C_Soldier import C_Soldier
+    from src.Characters.TownsFolk.C_Mayor import C_Mayor
+
+    return [C_Librarian, C_Investigator, C_Chef, C_Empath, C_FortuneTeller,
+            C_Undertaker, C_Monk, C_RavenKeeper, C_Virgin, C_Slayer, C_Soldier, C_Mayor]
+
 def GetRandomCharactersAndBluffsTB(character_type_dist):
 
     from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman

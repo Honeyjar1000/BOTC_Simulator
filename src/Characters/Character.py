@@ -1,4 +1,3 @@
-
 class Character:
 
     def __init__(self, character_name, character_type, alignment):
@@ -16,7 +15,8 @@ class Character:
         return self.character_name
 
     def TakeNightAction(self, action):
-        return
+        output = action.TakeAction()
+        return output
     
     def TakeAction(self, action):
         return
