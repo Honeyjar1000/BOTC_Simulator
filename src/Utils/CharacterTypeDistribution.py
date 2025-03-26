@@ -1,4 +1,5 @@
 import random
+from src.Characters.EnumCharacter import Characters
 
 def GetBaseCharacterTypeDistribution(player_count):
     match player_count:
@@ -15,80 +16,50 @@ def GetBaseCharacterTypeDistribution(player_count):
         case 15: return [9, 2, 3]
 
 
-def GetAllTownsfolkRolls():
-    from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
-    from src.Characters.TownsFolk.C_Librarian import C_Librarian
-    from src.Characters.TownsFolk.C_Investigator import C_Investigator
-    from src.Characters.TownsFolk.C_Chef import C_Chef
-    from src.Characters.TownsFolk.C_Empath import C_Empath
-    from src.Characters.TownsFolk.C_FortuneTeller import C_FortuneTeller
-    from src.Characters.TownsFolk.C_Undertaker import C_Undertaker
-    from src.Characters.TownsFolk.C_Monk import C_Monk
-    from src.Characters.TownsFolk.C_RavenKeeper import C_RavenKeeper
-    from src.Characters.TownsFolk.C_Virgin import C_Virgin
-    from src.Characters.TownsFolk.C_Slayer import C_Slayer
-    from src.Characters.TownsFolk.C_Soldier import C_Soldier
-    from src.Characters.TownsFolk.C_Mayor import C_Mayor
+def GetAllTownsfolkRolesBesidesWasherWoman():
 
-    return [C_Librarian, C_Investigator, C_Chef, C_Empath, C_FortuneTeller,
-            C_Undertaker, C_Monk, C_RavenKeeper, C_Virgin, C_Slayer, C_Soldier, C_Mayor]
+    return [Characters.LIBRARIAN, Characters.INVESTIGATOR, Characters.CHEF, 
+            Characters.EMPATH, Characters.FORTUNE_TELLER, 
+            Characters.UNDERTAKER, Characters.MONK, Characters.RAVEN_KEEPER, 
+            Characters.VIRGIN, Characters.SLAYER, Characters.SLAYER, Characters.MAYOR]
 
 def GetRandomCharactersAndBluffsTB(character_type_dist):
-
-    from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
-    from src.Characters.TownsFolk.C_Librarian import C_Librarian
-    from src.Characters.TownsFolk.C_Investigator import C_Investigator
-    from src.Characters.TownsFolk.C_Chef import C_Chef
-    from src.Characters.TownsFolk.C_Empath import C_Empath
-    from src.Characters.TownsFolk.C_FortuneTeller import C_FortuneTeller
-    from src.Characters.TownsFolk.C_Undertaker import C_Undertaker
-    from src.Characters.TownsFolk.C_Monk import C_Monk
-    from src.Characters.TownsFolk.C_RavenKeeper import C_RavenKeeper
-    from src.Characters.TownsFolk.C_Virgin import C_Virgin
-    from src.Characters.TownsFolk.C_Slayer import C_Slayer
-    from src.Characters.TownsFolk.C_Soldier import C_Soldier
-    from src.Characters.TownsFolk.C_Mayor import C_Mayor
-    from src.Characters.Outsider.C_Butler import C_Butler
-    from src.Characters.Outsider.C_Saint import C_Saint
-    from src.Characters.Outsider.C_Recluse import C_Recluse
-    from src.Characters.Outsider.C_Drunk import C_Drunk
-    from src.Characters.Minion.C_Poisoner import C_Poisoner
-    from src.Characters.Minion.C_Spy import C_Spy
-    from src.Characters.Minion.C_Baron import C_Baron
-    from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
-    from src.Characters.Demon.C_Imp import C_Imp
-
+  
     # Always add Imp
-    characters = [C_Imp]
+    characters = [Characters.IMP]
 
     # First Choose Minions
-    minions = [C_Poisoner, C_Spy, C_Baron, C_ScarletWoman]
+    minions = [Characters.POISONER, Characters.SPY, Characters.BARON, Characters.SCARLET_WOMAN]
     characters += random.sample(minions, character_type_dist[2])
     
     # Edit Character Distribution If Baron In Play
-    if C_Baron in characters:
+    if Characters.BARON in characters:
         character_type_dist[0] -= 2
         character_type_dist[1] += 2
 
     # Next Choose Outsiders
-    outsiders = [C_Butler, C_Saint, C_Recluse, C_Drunk]
+    outsiders = [Characters.BUTLER, Characters.SAINT, Characters.RECLUSE, Characters.DRUNK]
     characters += random.sample(outsiders, character_type_dist[1])
     
     # Finally Choose townsfolk
-    townsfolk = [C_WasherWoman, C_Librarian, C_Investigator, C_Chef, C_Empath, C_FortuneTeller, C_Undertaker,
-                 C_Monk, C_RavenKeeper, C_Virgin, C_Slayer, C_Soldier, C_Mayor]
+    townsfolk = [Characters.WASHER_WOMAN, Characters.LIBRARIAN, Characters.INVESTIGATOR, Characters.CHEF, 
+                 Characters.EMPATH, Characters.FORTUNE_TELLER, Characters.UNDERTAKER, Characters.MONK, 
+                 Characters.RAVEN_KEEPER, Characters.VIRGIN, Characters.SLAYER, Characters.SOLDIER, Characters.MAYOR]
     characters += random.sample(townsfolk, character_type_dist[0])
     
     # Create instances of the characters
     character_instances = []
     for character in characters:
-        current_character = character()  # Create an instance of the character
+        current_character = character.value()  # Create an instance of the character
         character_instances.append(current_character)
 
+
+    ### Demon Bluffs...
     # Create a list of remaining characters that are not in the character_instances list
-    all_characters = [C_Butler, C_Saint, C_Recluse, C_Drunk, 
-                      C_WasherWoman, C_Librarian, C_Investigator, C_Chef, C_Empath, C_FortuneTeller, 
-                      C_Undertaker, C_Monk, C_RavenKeeper, C_Virgin, C_Slayer, C_Soldier, C_Mayor]
+    all_characters = [  Characters.BUTLER, Characters.SAINT, Characters.RECLUSE, Characters.DRUNK, 
+                        Characters.WASHER_WOMAN, Characters.LIBRARIAN, Characters.INVESTIGATOR, Characters.CHEF, 
+                        Characters.EMPATH, Characters.FORTUNE_TELLER, Characters.UNDERTAKER, Characters.MONK, 
+                        Characters.RAVEN_KEEPER, Characters.VIRGIN, Characters.SLAYER, Characters.SOLDIER, Characters.MAYOR]
     
     # Remove the characters already in character_instances
     remaining_characters = [char for char in all_characters if char not in characters]
@@ -99,7 +70,7 @@ def GetRandomCharactersAndBluffsTB(character_type_dist):
     # Create instances of the additional characters
     demon_bluffs = []
     for character in additional_characters:
-        current_character = character()
+        current_character = character.value()
         demon_bluffs.append(current_character)
 
     # Shuffle the final list of character instances
@@ -108,32 +79,12 @@ def GetRandomCharactersAndBluffsTB(character_type_dist):
     return character_instances, demon_bluffs
 
 def GetCharacterNightOrder(script):
-    
-    from src.Characters.TownsFolk.C_WasherWoman import C_WasherWoman
-    from src.Characters.TownsFolk.C_Librarian import C_Librarian
-    from src.Characters.TownsFolk.C_Investigator import C_Investigator
-    from src.Characters.TownsFolk.C_Chef import C_Chef
-    from src.Characters.TownsFolk.C_Empath import C_Empath
-    from src.Characters.TownsFolk.C_FortuneTeller import C_FortuneTeller
-    from src.Characters.TownsFolk.C_Undertaker import C_Undertaker
-    from src.Characters.TownsFolk.C_Monk import C_Monk
-    from src.Characters.TownsFolk.C_RavenKeeper import C_RavenKeeper
-    from src.Characters.TownsFolk.C_Virgin import C_Virgin
-    from src.Characters.TownsFolk.C_Slayer import C_Slayer
-    from src.Characters.TownsFolk.C_Soldier import C_Soldier
-    from src.Characters.TownsFolk.C_Mayor import C_Mayor
-    from src.Characters.Outsider.C_Butler import C_Butler
-    from src.Characters.Outsider.C_Saint import C_Saint
-    from src.Characters.Outsider.C_Recluse import C_Recluse
-    from src.Characters.Outsider.C_Drunk import C_Drunk
-    from src.Characters.Minion.C_Poisoner import C_Poisoner
-    from src.Characters.Minion.C_Spy import C_Spy
-    from src.Characters.Minion.C_Baron import C_Baron
-    from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
-    from src.Characters.Demon.C_Imp import C_Imp
-    
+
     first_night_order, other_night_order = [], []
     if script == "TB":
-        first_night_order = [C_Poisoner, C_Spy, C_WasherWoman, C_Librarian, C_Investigator, C_Chef, C_Empath, C_FortuneTeller, C_Butler]
-        other_night_order = [C_Poisoner, C_Monk, C_Spy, C_ScarletWoman, C_Imp, C_RavenKeeper, C_Undertaker, C_Empath, C_FortuneTeller, C_Butler]
+        first_night_order = [   Characters.POISONER, Characters.SPY, Characters.WASHER_WOMAN, Characters.LIBRARIAN, 
+                                Characters.INVESTIGATOR, Characters.CHEF, Characters.EMPATH, Characters.FORTUNE_TELLER, Characters.BUTLER]
+        other_night_order = [   Characters.POISONER, Characters.MONK, Characters.SPY, Characters.SCARLET_WOMAN, 
+                                Characters.IMP, Characters.RAVEN_KEEPER, Characters.UNDERTAKER, Characters.EMPATH,
+                                Characters.FORTUNE_TELLER, Characters.BUTLER]
     return first_night_order, other_night_order

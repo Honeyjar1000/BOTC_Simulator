@@ -1,10 +1,10 @@
-from src.Characters import Character
+from src.Characters.EnumCharacter import Characters
 from src.Actions import Action
 from src.Player.BlackBoard import BlackBoard
 
 class Player():
 
-    def __init__(self, character:Character, name:str):
+    def __init__(self, character:Characters, name:str):
         self.character = character
         self.player_name = name
         self.bb = BlackBoard(name, character.GetPercievedCharacter())

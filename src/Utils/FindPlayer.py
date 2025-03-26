@@ -1,12 +1,8 @@
-from src.Characters.Minion.C_Poisoner import C_Poisoner
-from src.Characters.Minion.C_Baron import C_Baron
-from src.Characters.Minion.C_Spy import C_Spy
-from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
-from src.Characters.Demon.C_Imp import C_Imp
-from src.Utils.CharacterTypeDistribution import GetAllTownsfolkRolls
+from src.Characters.EnumCharacter import Characters
+from src.Utils.CharacterTypeDistribution import GetAllTownsfolkRolesBesidesWasherWoman
 import random
 
-def CheckIfCharacterInPlay(character, player_dict):
+def CheckIfCharacterInPlay(character, player_dict:dict):
 
     ##########################################################
     ##########################################################
@@ -24,7 +20,7 @@ def CheckIfCharacterInPlay(character, player_dict):
     for (i,key) in enumerate(player_dict):
         player = player_dict[key]
         #print(type(player.character), character)
-        if type(player.character) == character:
+        if type(player.character) == character.value:
             return True, player
     return False, None
 
@@ -44,7 +40,7 @@ def GetMinionPlayers(players):
     ##########################################################
 
     player_minions = []
-    minions = [C_Poisoner, C_Baron, C_Spy, C_ScarletWoman]
+    minions = [Characters.POISONER, Characters.BARON, Characters.SPY, Characters.SCARLET_WOMAN]
     for minion in minions:
         b_in_play, player = CheckIfCharacterInPlay(minion, players)
         if b_in_play:
@@ -66,7 +62,7 @@ def GetDemonPlayer(players):
     ##########################################################
     ##########################################################
 
-    b_in_play, player = CheckIfCharacterInPlay(C_Imp, players)
+    b_in_play, player = CheckIfCharacterInPlay(Characters.IMP, players)
     if b_in_play:
         return player
     else:
@@ -88,7 +84,7 @@ def FindWashWomanPings(players):
     ##########################################################
     ##########################################################
     
-    townsfolk_characters = GetAllTownsfolkRolls()
+    townsfolk_characters = GetAllTownsfolkRolesBesidesWasherWoman()
     b_character_in_play = False
     while not b_character_in_play:
         random_character = random.sample(townsfolk_characters, 1)[0]
@@ -100,7 +96,6 @@ def FindWashWomanPings(players):
     b_found_false_ping = False
     while not b_found_false_ping:
         random_player = random.sample(list(players.items()), 1)[0][1]
-        print("ln 103: ", random_player.bb.data["player_name"], player_townsfolk.bb.data["player_name"])
         if random_player.bb.data["player_name"] != player_townsfolk.bb.data["player_name"]:
             final_player_output.append(random_player)
             b_found_false_ping = True

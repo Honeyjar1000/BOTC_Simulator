@@ -1,11 +1,7 @@
 from src.Actions.Action import Action
 from src.Utils.FindPlayer import CheckIfCharacterInPlay, GetDemonPlayer, GetMinionPlayers
 from src.Utils.ActionOutputData import ActionOutputData
-from src.Characters.Minion.C_Poisoner import C_Poisoner
-from src.Characters.Minion.C_Baron import C_Baron
-from src.Characters.Minion.C_Spy import C_Spy
-from src.Characters.Minion.C_ScarletWoman import C_ScarletWoman
-from src.Characters.Demon.C_Imp import C_Imp
+from src.Characters.EnumCharacter import Characters
 
 class A_MinionFirstNightInfo(Action):
     
@@ -18,7 +14,7 @@ class A_MinionFirstNightInfo(Action):
 
     def GetMinionPlayers(self, players):
         player_minions = []
-        minions = [C_Poisoner, C_Baron, C_Spy, C_ScarletWoman]
+        minions = [Characters.POISONER, Characters.BARON, Characters.SPY, Characters.SCARLET_WOMAN]
         for minion in minions:
             b_in_play, player = CheckIfCharacterInPlay(minion, players)
             if b_in_play:

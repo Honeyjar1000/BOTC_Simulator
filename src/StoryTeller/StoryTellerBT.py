@@ -17,7 +17,7 @@ from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 class StoryTellerBT:
     def __init__(self, story_teller):
         self.story_teller = story_teller
-        self.wait_duration = 2
+        self.wait_duration = 1
         # Create BT Root
         self.root = py_trees.composites.Selector(name="Root", memory=True)
 

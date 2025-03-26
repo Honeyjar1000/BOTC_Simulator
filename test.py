@@ -1,7 +1,7 @@
-action_output_dict = {
-    "demon_player": None,
-    "minion_players": None,
-    "player_character": None
-}
+from enum import Enum
 
-a = action_output_dict
+
+# Make storyteller BB an Enum?
+class enum_class(Enum):
+    CONST1 = "Hello"
+    CONST2 = "IDK"
