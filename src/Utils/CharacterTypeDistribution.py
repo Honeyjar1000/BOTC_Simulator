@@ -23,6 +23,9 @@ def GetAllTownsfolkRolesBesidesWasherWoman():
             Characters.UNDERTAKER, Characters.MONK, Characters.RAVEN_KEEPER, 
             Characters.VIRGIN, Characters.SLAYER, Characters.SLAYER, Characters.MAYOR]
 
+def GetAllOutsiderRoles():
+    return [Characters.BUTLER, Characters.DRUNK, Characters.SAINT, Characters.RECLUSE]
+
 def GetRandomCharactersAndBluffsTB(character_type_dist):
   
     # Always add Imp

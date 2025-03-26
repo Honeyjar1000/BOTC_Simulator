@@ -11,9 +11,12 @@ from src.StoryTeller.BTNodes.NodeST_ConditionDay import NodeST_ConditionDay
 from src.StoryTeller.BTNodes.NodeST_CallTownSquare import NodeST_CallTownSquare
 from src.StoryTeller.BTNodes.NodeST_ConditionTownSquare import NodeST_ConditionTownSquare
 from src.StoryTeller.BTNodes.NodeST_EndDay import NodeST_EndDay
-from src.StoryTeller.BTNodes.NodeST_ConditionCheckWasherWomanInPlay import NodeST_ConditionCheckWasherWomanInPlay
 from src.StoryTeller.BTNodes.NodeST_WasherWomanInfo import NodeST_WasherWomanInfo
+from src.StoryTeller.BTNodes.NodeST_LibrarianInfo import NodeST_LibrarianInfo
+
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
+
+
 class StoryTellerBT:
     def __init__(self, story_teller):
         self.story_teller = story_teller
@@ -41,11 +44,14 @@ class StoryTellerBT:
         node_first_night_demon_info = NodeST_DemonFirstNightInfo("First Night Demon Info", black_board=self.story_teller.BB)
         node_wait_3 = NodeST_Wait("Wait", duration=self.wait_duration)
         
-        node_do_washer_woman_info = NodeST_WasherWomanInfo("First Washer Woman Night Info", black_board=self.story_teller.BB)
+        node_do_washer_woman_info = NodeST_WasherWomanInfo("First Night Washer Woman Info", black_board=self.story_teller.BB)
         node_wait_4 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        node_do_librarian_info = NodeST_LibrarianInfo("First Night Librarian Info", black_board=self.story_teller.BB)
+        node_wait_5 = NodeST_Wait("Wait", duration=self.wait_duration)
         
         node_end_first_night = NodeST_EndFirstNight("End First Night", black_board=self.story_teller.BB)
-        node_wait_5 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_6 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         node_first_nighttime.add_children([
             node_condition_first_night, 
@@ -56,8 +62,10 @@ class StoryTellerBT:
             node_wait_3,
             node_do_washer_woman_info,
             node_wait_4,
+            node_do_librarian_info,
+            node_wait_5,
             node_end_first_night,
-            node_wait_5
+            node_wait_6
         ])
         
         #############################

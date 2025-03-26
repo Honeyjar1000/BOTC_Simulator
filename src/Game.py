@@ -43,16 +43,7 @@ class Game:
             self.game_visualiser.Display()
             time.sleep(1)
 
-
-        '''
-        
-        while not self.story_teller.CheckGameOver():
-            self.story_teller.RunNight()
-            self.story_teller.RunDay()
-            self.story_teller.RunTownSquare()
-            self.game_visualiser.Display()'
-        '''
-
+            
     @staticmethod
     def PrintCharacters(character_list):
         s = 'Characters: : '
