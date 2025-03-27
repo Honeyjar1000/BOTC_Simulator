@@ -1,7 +1,7 @@
 from src.Characters.EnumCharacter import Characters
 from src.Utils.CharacterTypeDistribution import GetAllOutsiderRoles
 import random
-from src.Utils.FirstNightInfoClass import FirstNightInfoClass
+from src.Utils.InfoClasses.FirstNightInfoClass import FirstNightInfoClass
 
 def CheckIfCharacterInPlay(character, player_dict:dict):
 
