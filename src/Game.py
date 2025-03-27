@@ -37,7 +37,8 @@ class Game:
             character_type_dist = GetBaseCharacterTypeDistribution(self.player_count)
             character_list, self.story_teller.black_board.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
-            self.PrintPlayers(self.players, self.story_teller.black_board.demon_bluffs)
+            self.story_teller.PickRedHerring()
+            self.PrintPlayers(self.players, self.story_teller.black_board.demon_bluffs, self.story_teller.black_board.red_herring)
             self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
             self.game_visualiser.initialize_display()
             self.game_visualiser.update_display()
@@ -66,7 +67,7 @@ class Game:
         print(s)
     
     @staticmethod
-    def PrintPlayers(player_dict, demon_bluffs):
+    def PrintPlayers(player_dict, demon_bluffs, red_herring):
         s = '\n---------------------------------------------------\n\n'
         s += 'Players:\n\n'
         for (i, key) in enumerate(player_dict):
@@ -74,5 +75,7 @@ class Game:
         s += "\nDemon Bluffs:\n"
         for demon_bluff in demon_bluffs:
             s += "\n" + str(demon_bluff)
+        if (red_herring != None):
+            s += f'\n\n{red_herring} is the Red Herring\n'
         s+='\n\n---------------------------------------------------\n'
         print(s)

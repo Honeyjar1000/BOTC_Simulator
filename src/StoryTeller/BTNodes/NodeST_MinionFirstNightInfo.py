@@ -34,7 +34,7 @@ class NodeST_MinionFirstNightInfo(py_trees.behaviour.Behaviour):
                 action = A_MinionFirstNightInfo(self.story_teller.black_board.players)
                 current_player.WakeAtNight(story_teller=self.story_teller, action=action)
                 current_player.bb.print_beliefs()
-                sleep(1)
+                #sleep(1)
 
         return py_trees.common.Status.SUCCESS
         

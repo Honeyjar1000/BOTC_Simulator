@@ -1,5 +1,8 @@
 from src.StoryTeller.StoryTellerBT import StoryTellerBT
 from src.StoryTeller.StoryTellerBB import StoryTellerBB
+from src.Characters.EnumCharacter import Characters
+from src.Utils.FindPlayer import CheckIfCharacterInPlay
+import random
 
 class StoryTeller:
 
@@ -22,3 +25,16 @@ class StoryTeller:
         action = self.BT.tick()
         
         return action
+
+    def PickRedHerring(self):
+        b_in_play, _ = CheckIfCharacterInPlay(Characters.FORTUNE_TELLER, self.black_board.players)
+        if b_in_play:
+            # Get the list of other players
+            player_list = list(self.black_board.players.values())
+            # Filter players who have a good alignment and are not the imp
+
+            good_players = []
+            for player in player_list:
+                if (player.character.alignment == 'Good'):
+                    good_players.append(player)
+            self.black_board.red_herring = random.choice(good_players)

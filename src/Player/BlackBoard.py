@@ -11,10 +11,14 @@ class BlackBoard:
             "minion_players": None,
             "demon_bluffs": None,
             "poisoner_hits": None,
+            "spy_info":None,
             "washer_woman_info": None,
             "librarian_info": None,
             "investigator_info":None,
-            "chef_info":None
+            "chef_info":None,
+            "empath_info":None,
+            "fortune_teller_info":None,
+            "butler_picks": None
         }
 
         self.data_desc = {
@@ -24,11 +28,15 @@ class BlackBoard:
             "demon_player": 'The demon is',
             "minion_players": 'The minions are',
             "poisoner_hits": "Poisoner hits",
+            "spy_info": "Spy info",
             "demon_bluffs": 'The demon bluffs are ',
             "washer_woman_info": 'WasherWoman info is',
             "librarian_info": "Librarian info is",
             "investigator_info": "Investigator info is",
-            "chef_info": "Chef info is"
+            "chef_info": "Chef info is",
+            "empath_info":"Empath info is",
+            "fortune_teller_info":"Fortune Teller info is",
+            "butler_picks": "Butler picks"
         }
 
     def update(self, ActionOutputs:ActionOutputData):

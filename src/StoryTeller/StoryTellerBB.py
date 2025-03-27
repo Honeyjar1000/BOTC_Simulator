@@ -16,3 +16,4 @@ class StoryTellerBB:
         self.b_first_night = True
         self.b_is_day = False
         self.b_in_townsquare = False
+        self.red_herring = None

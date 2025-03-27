@@ -293,4 +293,22 @@ def GetNeighbours(players, player):
     return left_neighbor, right_neighbor
 
 def CheckPlayerAlignment(player):
-    return
+    if type(player.character) in [Characters.IMP.value, Characters.SCARLET_WOMAN.value, Characters.POISONER.value, Characters.BARON.value]:
+        return True
+    elif type(player.character) == Characters.SPY.value:
+        if random.random() > 0.4:
+            return True
+    elif type(player.character) == Characters.RECLUSE.value:
+        if random.random() > 0.6:
+            return True
+    return False
+
+def CheckPlayerIsDemonFortuneTeller(player, red_herring):
+    if type(player.character) == Characters.IMP.value:
+        return True
+    elif (player == red_herring):
+        return True
+    elif type(player.character) == Characters.RECLUSE.value:
+        if random.random() > 0.3:
+            return True
+    return False

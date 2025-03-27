@@ -16,7 +16,10 @@ from src.StoryTeller.BTNodes.NodeST_LibrarianInfo import NodeST_LibrarianInfo
 from src.StoryTeller.BTNodes.NodeST_InvestigatorInfo import NodeST_InvestigatorInfo
 from src.StoryTeller.BTNodes.NodeST_ChefInfo import NodeST_ChefInfo
 from src.StoryTeller.BTNodes.NodeST_PoisonerMove import NodeST_PoisonerMove
+from src.StoryTeller.BTNodes.NodeST_SpyMoves import NodeST_SpyMoves
 from src.StoryTeller.BTNodes.NodeST_EmpathMove import NodeST_EmpathMove
+from src.StoryTeller.BTNodes.NodeST_FortuneTellerMove import NodeST_FortuneTellerMove
+from src.StoryTeller.BTNodes.NodeST_Butler import NodeST_Butler
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 
 
@@ -48,35 +51,45 @@ class StoryTellerBT:
         # Demon Info
         node_first_night_demon_info = NodeST_DemonFirstNightInfo("First Night Demon Info", story_teller=self.story_teller)
         node_wait_3 = NodeST_Wait("Wait", duration=self.wait_duration)
-        
+
         # Poisoner
         node_poisoner_moves = NodeST_PoisonerMove("Poisoner Moves", story_teller=self.story_teller)
         node_wait_4 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Spy
+        node_spy_moves = NodeST_SpyMoves("Spy", story_teller=self.story_teller)
+        node_wait_5 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Washer Woman
         node_do_washer_woman_info = NodeST_WasherWomanInfo("First Night Washer Woman Info", story_teller=self.story_teller)
-        node_wait_5 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_6 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Librarian
         node_do_librarian_info = NodeST_LibrarianInfo("First Night Librarian Info", story_teller=self.story_teller)
-        node_wait_6 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_7 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Investigator
         node_do_investigator_info = NodeST_InvestigatorInfo("First Night Investigator Info", story_teller=self.story_teller)
-        node_wait_7 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_8 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Chef
         node_do_chef_info = NodeST_ChefInfo("First Night Chef Info", story_teller=self.story_teller)
-        node_wait_8 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_9 = NodeST_Wait("Wait", duration=self.wait_duration)
         
         # Empath
         node_empath_moves = NodeST_EmpathMove("Empath Moves", story_teller=self.story_teller)
-        node_wait_9 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_10 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Fortune Teller
+        node_fortune_teller_moves = NodeST_FortuneTellerMove("Fortune Teller Moves", story_teller=self.story_teller)
+        node_wait_11 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Butler
+        node_butler_moves = NodeST_Butler("Butler Moves", story_teller=self.story_teller)
+        node_wait_12 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         node_end_first_night = NodeST_EndFirstNight("End First Night", story_teller=self.story_teller)
-        node_wait_10 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_13 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         node_first_nighttime.add_children([
             node_condition_first_night, 
@@ -87,18 +100,24 @@ class StoryTellerBT:
             node_wait_3,
             node_poisoner_moves,
             node_wait_4,
-            node_do_washer_woman_info,
+            node_spy_moves,
             node_wait_5,
-            node_do_librarian_info,
+            node_do_washer_woman_info,
             node_wait_6,
-            node_do_investigator_info,
+            node_do_librarian_info,
             node_wait_7,
-            node_do_chef_info,
+            node_do_investigator_info,
             node_wait_8,
-            node_empath_moves,
+            node_do_chef_info,
             node_wait_9,
+            node_empath_moves,
+            node_wait_10,
+            node_fortune_teller_moves,
+            node_wait_11,
+            node_butler_moves,
+            node_wait_12,
             node_end_first_night,
-            node_wait_10
+            node_wait_13
         ])
         
         #############################
