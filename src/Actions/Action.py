@@ -1,4 +1,5 @@
-    
+# How to improve this class?
+
 class Action:
 
     def __init__(self):

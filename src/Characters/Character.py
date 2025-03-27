@@ -14,7 +14,7 @@ class Character:
     def GetPercievedCharacter(self):
         return self.character_name
 
-    def TakeNightAction(self, action, player_brain):
+    def TakeNightAction(self, action, player):
         output = action.TakeAction()
         return output
     

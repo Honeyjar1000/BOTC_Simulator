@@ -16,7 +16,7 @@ class Player():
 
     def WakeAtNight(self, action:Action):
         print(f'{self.player_name} takes action {str(action)}')
-        action_output = self.character.TakeNightAction(action, self.brain)
+        action_output = self.character.TakeNightAction(action, self)
         self.bb.update(action_output)
 
     def __str__(self):

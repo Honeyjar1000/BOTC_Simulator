@@ -15,10 +15,7 @@ from src.StoryTeller.BTNodes.NodeST_WasherWomanInfo import NodeST_WasherWomanInf
 from src.StoryTeller.BTNodes.NodeST_LibrarianInfo import NodeST_LibrarianInfo
 from src.StoryTeller.BTNodes.NodeST_InvestigatorInfo import NodeST_InvestigatorInfo
 from src.StoryTeller.BTNodes.NodeST_ChefInfo import NodeST_ChefInfo
-
 from src.StoryTeller.BTNodes.NodeST_PoisonerMove import NodeST_PoisonerMove
-
-
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 
 
