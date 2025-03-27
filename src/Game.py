@@ -3,6 +3,7 @@ from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
 from src.SimVisualiser.GameVisualiser import GameVisualiser
 import time
+import pygame
 
 class Game:
 
@@ -14,12 +15,16 @@ class Game:
     
         # Create Players - NAMES MUST BE UNIQUE
         self.players = {} # Dictionary of player names - player object
+        player_name_arr = []
         if player_names is None:
             for _ in range(self.player_count):
-                self.players[f'Player {_+1}'] = 0
+                player_name_arr.append(f'Player {_+1}')
         else:
             for player_name in range(player_names):
-                self.players[player_name] = 0
+                player_name_arr.append(player_name)
+        random.shuffle(player_name_arr)
+        for name in player_name_arr:
+            self.players[name] = 0
         
         # Story Teller
         self.story_teller = StoryTeller(self.players, self.script, self.player_count)
@@ -34,14 +39,23 @@ class Game:
             self.players = CreatePlayers(character_list, self.players)
             self.PrintPlayers(self.players, self.story_teller.BB.demon_bluffs)
             self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
-            self.game_visualiser.Display()
+            self.game_visualiser.initialize_display()
+            self.game_visualiser.update_display()
 
 
     def RunGame(self):
-        while True:
+        clock = pygame.time.Clock()  # To limit FPS
+        running = True
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False  # Exit the loop when the window is closed
+            
             self.story_teller.tick()
-            self.game_visualiser.Display()
-            time.sleep(1)
+            self.game_visualiser.update_display()
+            clock.tick(60)  # 60 FPS
+
+        pygame.quit()  # Quit pygame properly
 
             
     @staticmethod

@@ -16,12 +16,6 @@ def GetBaseCharacterTypeDistribution(player_count):
         case 15: return [9, 2, 3]
 
 
-def GetAllTownsfolkRolesBesidesWasherWoman():
-
-    return [Characters.LIBRARIAN, Characters.INVESTIGATOR, Characters.CHEF, 
-            Characters.EMPATH, Characters.FORTUNE_TELLER, 
-            Characters.UNDERTAKER, Characters.MONK, Characters.RAVEN_KEEPER, 
-            Characters.VIRGIN, Characters.SLAYER, Characters.SLAYER, Characters.MAYOR]
 
 def GetAllOutsiderRoles():
     return [Characters.BUTLER, Characters.DRUNK, Characters.SAINT, Characters.RECLUSE]

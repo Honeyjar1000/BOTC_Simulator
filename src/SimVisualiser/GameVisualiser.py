@@ -31,27 +31,25 @@ class PlayerEntity:
 
 
 class GameVisualiser:
-    def __init__(self, players:dict, story_teller:StoryTeller):
+    def __init__(self, players: dict, story_teller: StoryTeller):
         self.players = players
         self.story_teller = story_teller
 
         pygame.init()
-        # Screen setup
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("Circular Entities Simulation")
 
-        self.story_teller_image = pygame.image.load('src/SimVisualiser/RoleImg/IMGStoryTeller.png')  # Replace with your central image
+        self.story_teller_image = pygame.image.load('src/SimVisualiser/RoleImg/IMGStoryTeller.png')
         self.story_teller_image = self.create_circular_image(self.story_teller_image)
-        self.story_teller_image = pygame.transform.scale(self.story_teller_image, (120, 120))  # Resize to fit well in the center
+        self.story_teller_image = pygame.transform.scale(self.story_teller_image, (120, 120))
 
-        # Create players
         self.player_vis_entity = []
-        for (i, key) in enumerate(self.players):
+        for i, key in enumerate(self.players):
             player_character_image = pygame.image.load(RoleImgDict[type(self.players[key].character)])
             player_character_image = self.create_circular_image(player_character_image)
             player_character_image = pygame.transform.scale(player_character_image, (90, 90))
-        
-            self.player_vis_entity.append([PlayerEntity(f"{self.players[key].player_name}"), self.players[key], player_character_image])
+            
+            self.player_vis_entity.append([PlayerEntity(self.players[key].player_name), self.players[key], player_character_image])
 
 
     def create_circular_image(self, image, outline_thickness=8):
@@ -68,42 +66,30 @@ class GameVisualiser:
         # Copy the image to the mask surface, applying the circular mask
         mask_surface.blit(image, (0, 0), special_flags=pygame.BLEND_RGBA_MIN)
         return mask_surface
-    
-    def Display(self):
 
-        # Main room position (centered in the window)
-        x = (WIDTH - MAIN_ROOM_WIDTH) // 2
-        y = (HEIGHT - MAIN_ROOM_WIDTH) // 2
-        main_room = pygame.Rect(x, y, MAIN_ROOM_WIDTH, MAIN_ROOM_WIDTH)  # Main room in the center (large)
+    def initialize_display(self):
+        self.screen.fill(BLACK)
+        self.main_room = pygame.Rect((WIDTH - MAIN_ROOM_WIDTH) // 2, (HEIGHT - MAIN_ROOM_WIDTH) // 2, MAIN_ROOM_WIDTH, MAIN_ROOM_WIDTH)
+        self.ROOM_CENTER = (self.main_room.x + self.main_room.width // 2, self.main_room.y + self.main_room.height // 2)
+        pygame.font.init()
+        self.font = pygame.font.Font(None, 24)
 
-        # Update ROOM_CENTER to be the center of the main room
-        ROOM_CENTER = (main_room.x + main_room.width // 2, main_room.y + main_room.height // 2)
 
-        # Game loop
-        running = True
-        clock = pygame.time.Clock()
-
-        self.screen.fill(BLACK)  # Fill the screen with black
-
-        # Draw the main room
-        pygame.draw.rect(self.screen, FLOOR_COL, main_room)  # Main room
-
-        # Draw the central entity in the center of the main room
-        self.screen.blit(self.story_teller_image, (ROOM_CENTER[0] - 35, ROOM_CENTER[1] - 35))  # Center the central entity image
-
+    def update_display(self):
+        pygame.draw.rect(self.screen, FLOOR_COL, self.main_room)
+        self.screen.blit(self.story_teller_image, (self.ROOM_CENTER[0] - 35, self.ROOM_CENTER[1] - 35))
+        
         for i in range(len(self.player_vis_entity)):
-            self.player_vis_entity[i][0].update_position(i, len(self.player_vis_entity), ROOM_CENTER)
-            self.screen.blit(self.player_vis_entity[i][2], (self.player_vis_entity[i][0].x - self.player_vis_entity[i][2].get_width() // 2, self.player_vis_entity[i][0].y - self.player_vis_entity[i][2].get_height() // 2))
+            self.player_vis_entity[i][0].update_position(i, len(self.player_vis_entity), self.ROOM_CENTER)
+            player_x, player_y = self.player_vis_entity[i][0].x, self.player_vis_entity[i][0].y
+            player_img = self.player_vis_entity[i][2]
+            img_width, img_height = player_img.get_width(), player_img.get_height()
+            
+            pygame.draw.circle(self.screen, BLACK, (player_x, player_y), img_width // 2 + 3, 3)
+            self.screen.blit(player_img, (player_x - img_width // 2, player_y - img_height // 2))
+            
+            player_name_text = self.font.render(self.player_vis_entity[i][1].player_name, True, BLACK)
+            text_x, text_y = player_x - player_name_text.get_width() // 2, player_y - player_name_text.get_height() // 2
+            self.screen.blit(player_name_text, (text_x, text_y))
 
-
-        # Event handling
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:  # Check if the 'q' key was pressed
-                    running = False  # Stop the game loop
-
-        # Update the display
         pygame.display.flip()
-        clock.tick(60)  # Frame rate

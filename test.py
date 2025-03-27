@@ -1,7 +1,3 @@
-from enum import Enum
-
-
-# Make storyteller BB an Enum?
-class enum_class(Enum):
-    CONST1 = "Hello"
-    CONST2 = "IDK"
+import random
+for i in range(10):
+    print(random.random())

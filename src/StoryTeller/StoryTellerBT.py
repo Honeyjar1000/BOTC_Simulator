@@ -13,6 +13,8 @@ from src.StoryTeller.BTNodes.NodeST_ConditionTownSquare import NodeST_ConditionT
 from src.StoryTeller.BTNodes.NodeST_EndDay import NodeST_EndDay
 from src.StoryTeller.BTNodes.NodeST_WasherWomanInfo import NodeST_WasherWomanInfo
 from src.StoryTeller.BTNodes.NodeST_LibrarianInfo import NodeST_LibrarianInfo
+from src.StoryTeller.BTNodes.NodeST_InvestigatorInfo import NodeST_InvestigatorInfo
+from src.StoryTeller.BTNodes.NodeST_ChefInfo import NodeST_ChefInfo
 
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 
@@ -49,9 +51,15 @@ class StoryTellerBT:
 
         node_do_librarian_info = NodeST_LibrarianInfo("First Night Librarian Info", black_board=self.story_teller.BB)
         node_wait_5 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        node_do_investigator_info = NodeST_InvestigatorInfo("First Night Investigator Info", black_board=self.story_teller.BB)
+        node_wait_6 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        node_do_chef_info = NodeST_ChefInfo("First Night Chef Info", black_board=self.story_teller.BB)
+        node_wait_7 = NodeST_Wait("Wait", duration=self.wait_duration)
         
         node_end_first_night = NodeST_EndFirstNight("End First Night", black_board=self.story_teller.BB)
-        node_wait_6 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_8 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         node_first_nighttime.add_children([
             node_condition_first_night, 
@@ -64,8 +72,12 @@ class StoryTellerBT:
             node_wait_4,
             node_do_librarian_info,
             node_wait_5,
+            node_do_investigator_info,
+            node_wait_6,
+            node_do_chef_info,
+            node_wait_7,
             node_end_first_night,
-            node_wait_6
+            node_wait_8
         ])
         
         #############################
