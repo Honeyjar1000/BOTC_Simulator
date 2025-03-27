@@ -12,7 +12,7 @@ class A_DemonFirstNightInfo(Action):
     def __str__(self):
         return "[Demon First Night Info]"
 
-    def TakeAction(self):
+    def TakeAction(self, story_teller, player):
         action_output = ActionOutputData()
         action_output.data['minion_players'] = self.player_minions
         action_output.data['demon_bluffs'] = self.demon_bluffs

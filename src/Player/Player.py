@@ -1,11 +1,9 @@
-from src.Characters.EnumCharacter import Characters
-from src.Actions import Action
 from src.Player.BlackBoard import BlackBoard
 from src.Player.PlayerBrain import Brain
 
 class Player():
 
-    def __init__(self, character:Characters, name:str, all_players:dict):
+    def __init__(self, character, name:str, all_players:dict):
         self.character = character
         self.player_name = name
         self.bb = BlackBoard(name, character.GetPercievedCharacter(), all_players)
@@ -14,9 +12,9 @@ class Player():
         self.b_is_poisoned = False
 
 
-    def WakeAtNight(self, action:Action):
+    def WakeAtNight(self, story_teller, action):
         print(f'{self.player_name} takes action {str(action)}')
-        action_output = self.character.TakeNightAction(action, self)
+        action_output = action.TakeAction(story_teller=story_teller, player=self)
         self.bb.update(action_output)
 
     def __str__(self):

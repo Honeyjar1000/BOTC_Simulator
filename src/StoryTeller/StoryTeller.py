@@ -14,7 +14,7 @@ class StoryTeller:
     def __init__(self, _players, _scipt, _player_count):
 
         # Create BB
-        self.BB = StoryTellerBB(players=_players, scipt=_scipt, player_count=_player_count)
+        self.black_board = StoryTellerBB(players=_players, scipt=_scipt, player_count=_player_count)
         self.BT = StoryTellerBT(story_teller=self)
 
         

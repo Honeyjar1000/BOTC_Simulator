@@ -1,10 +1,9 @@
 import py_trees
-from src.StoryTeller.StoryTellerBB import StoryTellerBB
 
 # Define a simple action node
 class NodeST_EndOtherNight(py_trees.behaviour.Behaviour):
-    def __init__(self, name, black_board:StoryTellerBB):
-        self.black_board = black_board
+    def __init__(self, name, story_teller):
+        self.story_teller = story_teller
         super(NodeST_EndOtherNight, self).__init__(name)
 
     def update(self):
@@ -18,8 +17,8 @@ class NodeST_EndOtherNight(py_trees.behaviour.Behaviour):
         ###########################################
         #print(f"Executing: {self.name}")
 
-        self.black_board.b_in_night_phase = False
-        self.black_board.b_is_day = True
+        self.story_teller.black_board.b_in_night_phase = False
+        self.story_teller.black_board.b_is_day = True
 
         return py_trees.common.Status.SUCCESS
         

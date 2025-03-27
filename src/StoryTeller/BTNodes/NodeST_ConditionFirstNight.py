@@ -2,8 +2,8 @@ import py_trees
 
 # Define a simple action node
 class NodeST_ConditionFirstNight(py_trees.behaviour.Behaviour):
-    def __init__(self, name, black_board):
-        self.black_board = black_board
+    def __init__(self, name, story_teller):
+        self.story_teller = story_teller
         super(NodeST_ConditionFirstNight, self).__init__(name)
 
     def update(self):
@@ -17,7 +17,7 @@ class NodeST_ConditionFirstNight(py_trees.behaviour.Behaviour):
         ###########################################
         #print(f"Executing: {self.name}")
 
-        if self.black_board.b_first_night == True:
+        if self.story_teller.black_board.b_first_night == True:
             return py_trees.common.Status.SUCCESS
         else:
             return py_trees.common.Status.FAILURE

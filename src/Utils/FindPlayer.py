@@ -123,7 +123,6 @@ def FindWashWomanPings(players):
     result = FirstNightInfoClass(data=final_output)
     return result
 
-
 def FindLibrarianPings(players):
     
     ##########################################################
@@ -168,8 +167,6 @@ def FindLibrarianPings(players):
         final_output = 0
     result = FirstNightInfoClass(data=final_output)
     return result
-
-
 
 def FindInvestigatorPings(players):
     
@@ -281,3 +278,19 @@ def GetChefNumber(players):
         pair_count += 1
 
     return pair_count
+
+def GetNeighbours(players, player):
+    # Convert dictionary values to a list for indexing
+    player_list = list(players.values())
+
+    # Find the index of the given player
+    player_index = player_list.index(player)
+
+    # Get neighbors in a circular manner
+    left_neighbor = player_list[(player_index - 1) % len(player_list)]
+    right_neighbor = player_list[(player_index + 1) % len(player_list)]
+
+    return left_neighbor, right_neighbor
+
+def CheckPlayerAlignment(player):
+    return

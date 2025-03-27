@@ -35,9 +35,9 @@ class Game:
     def GenerateGame(self):
         if self.script == "TB":
             character_type_dist = GetBaseCharacterTypeDistribution(self.player_count)
-            character_list, self.story_teller.BB.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
+            character_list, self.story_teller.black_board.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
-            self.PrintPlayers(self.players, self.story_teller.BB.demon_bluffs)
+            self.PrintPlayers(self.players, self.story_teller.black_board.demon_bluffs)
             self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
             self.game_visualiser.initialize_display()
             self.game_visualiser.update_display()

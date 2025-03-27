@@ -11,7 +11,7 @@ class A_WashWomanInfo(Action):
     def __str__(self):
         return "[Washer Woman Info]"
 
-    def TakeAction(self):
+    def TakeAction(self, story_teller, player):
         action_output = ActionOutputData()
         action_output.data["washer_woman_info"] = self.washer_woman_info
         return action_output

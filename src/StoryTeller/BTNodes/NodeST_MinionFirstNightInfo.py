@@ -10,8 +10,8 @@ from time import sleep
 
 # Define a simple action node
 class NodeST_MinionFirstNightInfo(py_trees.behaviour.Behaviour):
-    def __init__(self, name, black_board):
-        self.black_board = black_board
+    def __init__(self, name, story_teller):
+        self.story_teller = story_teller
         super(NodeST_MinionFirstNightInfo, self).__init__(name)
 
     def update(self):
@@ -28,11 +28,11 @@ class NodeST_MinionFirstNightInfo(py_trees.behaviour.Behaviour):
         print("\nStoryteller gives minion info...")
         all_minion_list = [Characters.POISONER, Characters.BARON, Characters.SPY, Characters.SCARLET_WOMAN]
         for minion in all_minion_list:
-            b_in_play, current_player = CheckIfCharacterInPlay(minion, self.black_board.players)
+            b_in_play, current_player = CheckIfCharacterInPlay(minion, self.story_teller.black_board.players)
             if b_in_play:
                 print(f'\nStory Teller wakes up {current_player.player_name}, the {str(current_player.character)} to learn starting Minion Info')
-                action = A_MinionFirstNightInfo(self.black_board.players)
-                current_player.WakeAtNight(action)
+                action = A_MinionFirstNightInfo(self.story_teller.black_board.players)
+                current_player.WakeAtNight(story_teller=self.story_teller, action=action)
                 current_player.bb.print_beliefs()
                 sleep(1)
 

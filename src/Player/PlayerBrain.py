@@ -8,6 +8,7 @@ class Brain:
         return random.random()
     
     def think_pick_player(self):
+        # for now always pick random player
         player_list = list(self.black_board.data['other_players'].values())
         random_player = random.sample(player_list, 1)[0]
         return random_player

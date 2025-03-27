@@ -1,10 +1,9 @@
 import py_trees
-from src.StoryTeller.StoryTellerBB import StoryTellerBB
 
 # Define a simple action node
 class NodeST_ConditionDay(py_trees.behaviour.Behaviour):
-    def __init__(self, name, black_board:StoryTellerBB):
-        self.black_board = black_board
+    def __init__(self, name, story_teller):
+        self.story_teller = story_teller
         super(NodeST_ConditionDay, self).__init__(name)
 
     def update(self):
@@ -18,7 +17,7 @@ class NodeST_ConditionDay(py_trees.behaviour.Behaviour):
         ###########################################
         #print(f"Executing: {self.name}")
         condition = False
-        if (self.black_board.b_is_day == True) and (self.black_board.b_in_townsquare == False):
+        if (self.story_teller.black_board.b_is_day == True) and (self.story_teller.black_board.b_in_townsquare == False):
             condition = True
 
         if condition:

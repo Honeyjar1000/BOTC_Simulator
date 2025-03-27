@@ -5,5 +5,5 @@ class Action:
     def __init__(self):
         pass
     
-    def TakeAction(self, brain=None):
+    def TakeAction(self, story_teller=None, player=None):
         pass

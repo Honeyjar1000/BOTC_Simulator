@@ -12,7 +12,8 @@ class A_MinionFirstNightInfo(Action):
     def __str__(self):
         return "[Minion First Night Info]"
 
-    def GetMinionPlayers(self, players):
+    @staticmethod
+    def GetMinionPlayers(players):
         player_minions = []
         minions = [Characters.POISONER, Characters.BARON, Characters.SPY, Characters.SCARLET_WOMAN]
         for minion in minions:
@@ -23,7 +24,7 @@ class A_MinionFirstNightInfo(Action):
     
 
     
-    def TakeAction(self):
+    def TakeAction(self, story_teller, player):
         action_output = ActionOutputData()
         action_output.data['demon_player'] = self.player_demon
         action_output.data['minion_players'] = self.player_minions

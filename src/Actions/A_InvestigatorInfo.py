@@ -11,7 +11,7 @@ class A_InvestigatorInfo(Action):
     def __str__(self):
         return "[Investigator Info]"
 
-    def TakeAction(self):
+    def TakeAction(self, story_teller, player):
         action_output = ActionOutputData()
         action_output.data["investigator_info"] = self.investigator_info
         return action_output
