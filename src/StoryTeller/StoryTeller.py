@@ -14,11 +14,11 @@ class StoryTeller:
     #######################################################
     #######################################################
 
-    def __init__(self, _players, _scipt, _player_count):
+    def __init__(self, _players, _scipt, _player_count, _wait_duration=1):
 
         # Create BB
         self.black_board = StoryTellerBB(players=_players, scipt=_scipt, player_count=_player_count)
-        self.BT = StoryTellerBT(story_teller=self)
+        self.BT = StoryTellerBT(story_teller=self, wait_duration=_wait_duration)
 
         
     def tick(self):
@@ -35,6 +35,6 @@ class StoryTeller:
 
             good_players = []
             for player in player_list:
-                if (player.character.alignment == 'Good'):
+                if (player.character.alignment == 'Good') and (type(player.character) != Characters.RECLUSE):
                     good_players.append(player)
             self.black_board.grimoir.data.data["red_herring"] = random.sample(good_players, 1)[0]

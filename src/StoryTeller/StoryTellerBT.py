@@ -21,12 +21,12 @@ from src.StoryTeller.BTNodes.NodeST_EmpathMove import NodeST_EmpathMove
 from src.StoryTeller.BTNodes.NodeST_FortuneTellerMove import NodeST_FortuneTellerMove
 from src.StoryTeller.BTNodes.NodeST_Butler import NodeST_Butler
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
-
+from src.StoryTeller.BTNodes.NodeST_ExecutePlayer import NodeST_ExecutePlayer
 
 class StoryTellerBT:
-    def __init__(self, story_teller):
+    def __init__(self, story_teller, wait_duration=1):
         self.story_teller = story_teller
-        self.wait_duration = 1
+        self.wait_duration = wait_duration
         # Create BT Root
         self.root = py_trees.composites.Selector(name="Root", memory=True)
 
@@ -124,23 +124,67 @@ class StoryTellerBT:
         # Other Night
         #############################
         node_condition_other_night = NodeST_ConditionOtherNight("Check Other Night Condition", story_teller=self.story_teller)
+        
+        # Poisoner
+        node_poisoner_moves_2 = NodeST_PoisonerMove("Poisoner Moves", story_teller=self.story_teller)
+        node_wait_14 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Spy
+        node_spy_moves_2 = NodeST_SpyMoves("Spy", story_teller=self.story_teller)
+        node_wait_15 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Empath
+        node_empath_moves_2 = NodeST_EmpathMove("Empath Moves", story_teller=self.story_teller)
+        node_wait_16 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Fortune Teller
+        node_fortune_teller_moves_2 = NodeST_FortuneTellerMove("Fortune Teller Moves", story_teller=self.story_teller)
+        node_wait_17 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Butler
+        node_butler_moves_2 = NodeST_Butler("Butler Moves", story_teller=self.story_teller)
+        node_wait_18 = NodeST_Wait("Wait", duration=self.wait_duration)
+
         node_end_other_night = NodeST_EndOtherNight("End Other Night", story_teller=self.story_teller)
-        node_nighttime.add_children([node_condition_other_night, node_end_other_night])
+        node_nighttime.add_children([
+            node_condition_other_night, 
+            node_poisoner_moves_2,
+            node_wait_14,
+            node_spy_moves_2,
+            node_wait_15,
+            node_empath_moves_2,
+            node_wait_16,
+            node_fortune_teller_moves_2,
+            node_wait_17,
+            node_butler_moves_2,
+            node_wait_18,
+            node_end_other_night])
 
         #############################
         # Day Time
         #############################
         node_condition_day = NodeST_ConditionDay("Check Day Condition", story_teller=self.story_teller)
+        node_wait_day = NodeST_Wait("Wait", duration=0.5)
         node_call_townsquare = NodeST_CallTownSquare("Call Townsquare", story_teller=self.story_teller)
-        node_daytime.add_children([node_condition_day, node_call_townsquare])
+        node_daytime.add_children([
+            node_condition_day, 
+            node_wait_day, 
+            node_call_townsquare])
 
         #############################
         # Town Square
         #############################
         node_condition_townsquare = NodeST_ConditionTownSquare("Check TownSquare Condition", story_teller=self.story_teller)
+        node_wait_townsquare = NodeST_Wait("Wait", duration=0.5)
+        node_execute_player = NodeST_ExecutePlayer("Execute player", story_teller=self.story_teller)
         node_end_day = NodeST_EndDay("End Day", story_teller=self.story_teller)
-        node_townsquare.add_children([node_condition_townsquare, node_end_day])
-
+        
+        node_townsquare.add_children([
+            node_condition_townsquare, 
+            node_wait_townsquare, 
+            node_execute_player,
+            node_end_day])
+        
     def tick(self):
         """Tick the behavior tree once and return the status"""
         return self.root.tick_once()

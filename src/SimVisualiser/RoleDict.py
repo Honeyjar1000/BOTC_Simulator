@@ -45,4 +45,15 @@ RoleImgDict = {
     C_Baron: 'src/SimVisualiser/RoleImg/Baron.png',
     C_ScarletWoman: 'src/SimVisualiser/RoleImg/ScarletWoman.png',
     C_Imp: 'src/SimVisualiser/RoleImg/Imp.png',
+
 }
+
+RED_HERRING = 'src/SimVisualiser/RoleImg/red_herring.png'
+IS_POISONED = 'src/SimVisualiser/RoleImg/is_poisoned.png'
+BUTLER_PICKED = 'src/SimVisualiser/RoleImg/butler_picks.png'
+WASHER_WOMAN_CORRECT = 'src/SimVisualiser/RoleImg/WasherWomanCorrect.png'
+WASHER_WOMAN_WRONG = 'src/SimVisualiser/RoleImg/WasherWomanWrong.png'
+LIBRARIAN_CORRECT = 'src/SimVisualiser/RoleImg/LibrarianCorrect.png'
+LIBRARIAN_WRONG = 'src/SimVisualiser/RoleImg/LibrarianWrong.png'
+INVESTIGATOR_CORRECT = 'src/SimVisualiser/RoleImg/InvestigatorCorrect.png'
+INVESTIGATOR_WRONG = 'src/SimVisualiser/RoleImg/InvestigatorWrong.png'

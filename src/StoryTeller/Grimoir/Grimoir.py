@@ -10,6 +10,16 @@ class Grimoir:
         action_output.data["red_herring"] = self.data.data["red_herring"]
         action_output.data["demon_bluffs"] = self.data.data["demon_bluffs"]
         action_output.data["player_roles"] = self.data.data["player_roles"]
+        action_output.data["butler_picks"] = self.data.data["butler_picks"]
+        action_output.data["washer_woman_info_correct"] = self.data.data["washer_woman_info_correct"]
+        action_output.data["washer_woman_info_wrong"] = self.data.data["washer_woman_info_wrong"]
+        action_output.data["librarian_info_correct"] = self.data.data["librarian_info_correct"]
+        action_output.data["librarian_info_wrong"] = self.data.data["librarian_info_wrong"]
+        action_output.data["investigator_info_correct"] = self.data.data["investigator_info_correct"]
+        action_output.data["investigator_info_wrong"] = self.data.data["investigator_info_wrong"]
+
+        
+        
         return action_output
         
         

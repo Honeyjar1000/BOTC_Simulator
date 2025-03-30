@@ -7,12 +7,13 @@ import pygame
 
 class Game:
 
-    def __init__(self, script='TB', player_count=12, player_names=None):
+    def __init__(self, script='TB', player_count=12, player_names=None, wait_duration=1):
 
         # Important Variables
+        self.player_names = player_names
         self.script = script
         self.player_count = player_count
-    
+        self.wait_duration = wait_duration
         # Create Players - NAMES MUST BE UNIQUE
         self.players = {} # Dictionary of player names - player object
         player_name_arr = []
@@ -27,7 +28,7 @@ class Game:
             self.players[name] = 0
         
         # Story Teller
-        self.story_teller = StoryTeller(self.players, self.script, self.player_count)
+        self.story_teller = StoryTeller(self.players, self.script, self.player_count, self.wait_duration)
         
         # VIsualiser component
         self.game_visualiser = None
@@ -47,18 +48,81 @@ class Game:
 
 
     def RunGame(self):
-        clock = pygame.time.Clock()  # To limit FPS
+        clock = pygame.time.Clock()
         running = True
+        game_over = False  # Flag to pause game logic after win
+
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False  # Exit the loop when the window is closed
-            
-            self.story_teller.tick()
-            self.game_visualiser.update_display()
-            clock.tick(60)  # 60 FPS
+                    running = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self.RestartGame()
+                        game_over = False  # Reset pause flag
 
-        pygame.quit()  # Quit pygame properly
+            if not game_over:
+                self.story_teller.tick()
+                result = self.CheckWinCondition()
+                if result:
+                    print("Game Over.")
+                    game_over = True
+
+            # Always redraw the display, even if paused
+            self.game_visualiser.update_display()
+            clock.tick(60)
+
+        pygame.quit()
+
+
+
+    def RestartGame(self):
+        # Here we reset or re-initialize the necessary components for restarting the game.
+        print("Restarting the game...")
+
+                # Create Players - NAMES MUST BE UNIQUE
+        self.players = {} # Dictionary of player names - player object
+        player_name_arr = []
+        if self.player_names is None:
+            for _ in range(self.player_count):
+                player_name_arr.append(f'Player {_+1}')
+        else:
+            for player_name in range(self.player_names):
+                player_name_arr.append(player_name)
+        random.shuffle(player_name_arr)
+        for name in player_name_arr:
+            self.players[name] = 0
+        
+        # Story Teller
+        self.story_teller = StoryTeller(self.players, self.script, self.player_count, self.wait_duration)
+        
+        # VIsualiser component
+        self.game_visualiser = None
+
+        self.GenerateGame()  # You can re-call the game generation logic
+
+
+    def CheckWinCondition(self):
+        alive_players = [p for p in self.players.values() if p.alive]
+        alive_count = len(alive_players)
+
+        demon_player = next((p for p in self.players.values() if p.character.character_type == "Demon"), None)
+
+        if demon_player is None:
+            return None  # Safety check
+        if not demon_player.alive:
+            print("\n🎉 Good wins! The demon is dead.\n")
+            return "GOOD"
+        if alive_count == 2:
+            if demon_player in alive_players:
+                print("\n😈 Evil wins! Only two players left and the demon survives.\n")
+                return "EVIL"
+        if self.story_teller.black_board.b_saint_executed:
+            print("\n😈 Evil wins! the saint has been executed.\n")
+            return "EVIL"
+        return None
+
+
 
             
     @staticmethod
@@ -81,3 +145,5 @@ class Game:
             s += f'\n\n{red_herring} is the Red Herring\n'
         s+='\n\n---------------------------------------------------\n'
         print(s)
+
+    

@@ -121,7 +121,7 @@ def FindWashWomanPings(players):
     random.shuffle(final_player_output)
     final_output = [random_character, final_player_output]
     result = FirstNightInfoClass(data=final_output)
-    return result
+    return result, [player_townsfolk, random_player]
 
 def FindLibrarianPings(players):
     
@@ -166,7 +166,7 @@ def FindLibrarianPings(players):
     else:
         final_output = 0
     result = FirstNightInfoClass(data=final_output)
-    return result
+    return result, [player_outsider, random_player]
 
 def FindInvestigatorPings(players):
     
@@ -214,7 +214,7 @@ def FindInvestigatorPings(players):
     else:
         final_output = 0
     result = FirstNightInfoClass(data=final_output)
-    return result
+    return result, [player_minion, random_player]
 
 def GetChefNumber(players):
     

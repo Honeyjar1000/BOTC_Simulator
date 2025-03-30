@@ -17,6 +17,6 @@ class NodeST_CallTownSquare(py_trees.behaviour.Behaviour):
         ###########################################
         #print(f"Executing: {self.name}")
         self.story_teller.black_board.b_in_townsquare = True
-
+        print("Townsquare is called!")
         return py_trees.common.Status.SUCCESS
         

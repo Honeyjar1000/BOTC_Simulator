@@ -15,5 +15,11 @@ class ActionOutputData:
             "fortune_teller_info":None,
             "butler_picks": None,
             "red_herring": None,
+            "washer_woman_info_correct": None,
+            "washer_woman_info_wrong":None,
+            "librarian_info_correct":None,
+            "librarian_info_wrong":None,
+            "investigator_info_correct":None,
+            "investigator_info_wrong":None,
             "player_roles": {}
         }

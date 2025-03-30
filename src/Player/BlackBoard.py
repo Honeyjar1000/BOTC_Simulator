@@ -20,6 +20,12 @@ class BlackBoard:
             "fortune_teller_info":None,
             "butler_picks": None,
             "red_herring":None,
+            "washer_woman_info_correct":None,
+            "washer_woman_info_wrong":None,            
+            "librarian_info_correct":None,
+            "librarian_info_wrong":None,
+            "investigator_info_correct":None,
+            "investigator_info_wrong":None,
             "player_roles": []
         }
 
@@ -40,6 +46,12 @@ class BlackBoard:
             "fortune_teller_info":"Fortune Teller info is",
             "butler_picks": "Butler picks",
             "red_herring":"Red herring is",
+            "washer_woman_info_correct":"Correct washer woman info is ",
+            "washer_woman_info_wrong":"Wrong washer woman info is ",            
+            "librarian_info_correct":"Correct librarian info is ",
+            "librarian_info_wrong":"Wrong librarian info is ",
+            "investigator_info_correct":"Correct investigator info is ",
+            "investigator_info_wrong":"Wrong investigator info is ",
             "player_roles": "Roles of other players are "
         }
 

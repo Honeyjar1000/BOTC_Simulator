@@ -19,6 +19,6 @@ class NodeST_EndFirstNight(py_trees.behaviour.Behaviour):
         self.story_teller.black_board.b_in_night_phase = False
         self.story_teller.black_board.b_first_night = False
         self.story_teller.black_board.b_is_day = True
-
+        print("Everyone wakes up")
         return py_trees.common.Status.SUCCESS
         

@@ -8,7 +8,7 @@ class Player():
         self.player_name = name
         self.bb = BlackBoard(name, character.GetPercievedCharacter(), all_players)
         self.brain = Brain(black_board=self.bb)
-
+        self.alive = True
         self.b_is_poisoned = False
 
 

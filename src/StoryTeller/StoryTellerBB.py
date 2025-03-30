@@ -18,3 +18,4 @@ class StoryTellerBB:
         self.b_is_day = False
         self.b_in_townsquare = False
         self.grimoir = Grimoir()
+        self.b_saint_executed = False

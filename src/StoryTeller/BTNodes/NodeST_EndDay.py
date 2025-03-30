@@ -22,6 +22,6 @@ class NodeST_EndDay(py_trees.behaviour.Behaviour):
         self.story_teller.black_board.b_in_night_phase = True
         self.story_teller.black_board.b_is_day = False
         self.story_teller.black_board.b_in_townsquare = False
-
+        print("Everyone goes to sleep!")
         return py_trees.common.Status.SUCCESS
         

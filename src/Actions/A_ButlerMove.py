@@ -17,4 +17,5 @@ class A_ButlerMove(Action):
         picked_player = player.brain.think_pick_player_not_self(player)
         action_output = ActionOutputData()
         action_output.data["butler_picks"] = picked_player
+        story_teller.black_board.grimoir.data.data["butler_picks"] = picked_player
         return action_output
