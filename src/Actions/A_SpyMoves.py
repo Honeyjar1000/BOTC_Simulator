@@ -12,7 +12,7 @@ class A_SpyMoves(Action):
         return "[Spy Moves]"
 
     def TakeAction(self, story_teller, player):
-
+        
         action_output = ActionOutputData()
-        action_output.data["spy_info"] = "DO LATER"
+        action_output = story_teller.black_board.grimoir.get_spy_data(action_output)
         return action_output

@@ -18,4 +18,5 @@ class A_PoisonerMove(Action):
         player.b_is_poisoned = True
         action_output = ActionOutputData()
         action_output.data["poisoner_hits"] = player
+        story_teller.black_board.grimoir.data.data["poisoner_hits"] = player     # Repeat for everything that would have a reminder token
         return action_output

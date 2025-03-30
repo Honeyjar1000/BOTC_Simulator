@@ -37,4 +37,4 @@ class StoryTeller:
             for player in player_list:
                 if (player.character.alignment == 'Good'):
                     good_players.append(player)
-            self.black_board.red_herring = random.choice(good_players)
+            self.black_board.grimoir.data.data["red_herring"] = random.sample(good_players, 1)[0]

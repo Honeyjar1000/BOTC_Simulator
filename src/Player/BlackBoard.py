@@ -18,7 +18,9 @@ class BlackBoard:
             "chef_info":None,
             "empath_info":None,
             "fortune_teller_info":None,
-            "butler_picks": None
+            "butler_picks": None,
+            "red_herring":None,
+            "player_roles": []
         }
 
         self.data_desc = {
@@ -36,7 +38,9 @@ class BlackBoard:
             "chef_info": "Chef info is",
             "empath_info":"Empath info is",
             "fortune_teller_info":"Fortune Teller info is",
-            "butler_picks": "Butler picks"
+            "butler_picks": "Butler picks",
+            "red_herring":"Red herring is",
+            "player_roles": "Roles of other players are "
         }
 
     def update(self, ActionOutputs:ActionOutputData):
@@ -47,6 +51,10 @@ class BlackBoard:
     def print_beliefs(self):
         s = f'{self.data['player_name']} believes:\n'
         for (i, key) in enumerate(self.data):
-            if (key is not 'player_name') and (key is not 'other_players') and (self.data[key] is not None):
+            if (key is not 'player_name') and (key is not 'player_roles') and (key is not 'other_players') and (self.data[key] is not None):
                 s += f'    - {self.data_desc[key]} {str(self.data[key])}\n'
+            if (key is 'player_roles'):
+                for (i, key2) in enumerate(self.data[key]):
+                    character = self.data[key][key2]
+                    s += f'    - {key2} is {str(character)}\n'
         print(s)

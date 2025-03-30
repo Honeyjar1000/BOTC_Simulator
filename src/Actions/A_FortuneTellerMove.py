@@ -16,7 +16,7 @@ class A_FortuneTellerMove(Action):
         players = player.brain.think_pick_2_players()
         empath_info = [players, False]
         for player in players:
-            if CheckPlayerIsDemonFortuneTeller(player, story_teller.black_board.red_herring):
+            if CheckPlayerIsDemonFortuneTeller(player, story_teller.black_board.grimoir.data.data['red_herring']):
                 empath_info[1] = True
 
         action_output = ActionOutputData()

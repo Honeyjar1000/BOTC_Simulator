@@ -13,5 +13,7 @@ class ActionOutputData:
             "chef_info":None,
             "empath_info":None,
             "fortune_teller_info":None,
-            "butler_picks": None
+            "butler_picks": None,
+            "red_herring": None,
+            "player_roles": {}
         }

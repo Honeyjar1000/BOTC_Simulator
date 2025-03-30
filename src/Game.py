@@ -38,7 +38,9 @@ class Game:
             character_list, self.story_teller.black_board.demon_bluffs = GetRandomCharactersAndBluffsTB(character_type_dist)
             self.players = CreatePlayers(character_list, self.players)
             self.story_teller.PickRedHerring()
-            self.PrintPlayers(self.players, self.story_teller.black_board.demon_bluffs, self.story_teller.black_board.red_herring)
+            self.story_teller.black_board.grimoir.data.data["demon_bluffs"] = self.story_teller.black_board.demon_bluffs
+            self.story_teller.black_board.grimoir.assign_player_characters(self.players)
+            self.PrintPlayers(self.players, self.story_teller.black_board.demon_bluffs, self.story_teller.black_board.grimoir.data.data['red_herring'])
             self.game_visualiser = GameVisualiser(players=self.players, story_teller=self.story_teller)
             self.game_visualiser.initialize_display()
             self.game_visualiser.update_display()

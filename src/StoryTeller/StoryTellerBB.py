@@ -2,6 +2,7 @@ from src.Utils.CharacterTypeDistribution import *
 from src.Utils.CreatePlayers import *
 from src.Characters import *
 from src.Actions import *
+from src.StoryTeller.Grimoir.Grimoir import Grimoir
 
 class StoryTellerBB:
     def __init__(self, players, scipt, player_count):
@@ -16,4 +17,4 @@ class StoryTellerBB:
         self.b_first_night = True
         self.b_is_day = False
         self.b_in_townsquare = False
-        self.red_herring = None
+        self.grimoir = Grimoir()
