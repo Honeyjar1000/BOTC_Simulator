@@ -14,6 +14,6 @@ class NodeST_ExecutePlayer(py_trees.behaviour.Behaviour):
         random_player = random.sample(player_list, 1)[0]
         random_player.alive = False
         print(str(random_player) + " is executed!")
-        if (type(random_player.character) == Characters.SAINT) and (random_player.b_is_poisoned == False):
+        if (type(random_player.character) == Characters.SAINT.value) and (random_player.b_is_poisoned == False):
             self.story_teller.black_board.b_saint_executed = True
         return py_trees.common.Status.SUCCESS  # Return SUCCESS when wait is done
