@@ -1,13 +1,13 @@
 from src.Actions.Action import Action
 from src.Utils.ActionOutputData import ActionOutputData
-from src.Utils.FindPlayer import GetMinionPlayers, GetDemonPlayer
+from src.Utils.FindPlayer import GetMinionPlayers, GetDemonPlayers
 
 class A_DemonFirstNightInfo(Action):
     
     def __init__(self, players, demon_bluffs):
         self.player_minions = GetMinionPlayers(players)
         self.demon_bluffs = demon_bluffs
-        self.demon_player = GetDemonPlayer(players)
+        self.demon_player = GetDemonPlayers(players)
 
     def __str__(self):
         return "[Demon First Night Info]"

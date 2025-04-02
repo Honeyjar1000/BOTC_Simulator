@@ -21,5 +21,6 @@ class ActionOutputData:
             "librarian_info_wrong":None,
             "investigator_info_correct":None,
             "investigator_info_wrong":None,
+            "monk_protects":None,
             "player_roles": {}
         }

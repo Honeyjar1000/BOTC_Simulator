@@ -1,7 +1,7 @@
 from src.Actions.Action import Action
 from src.Utils.ActionOutputData import ActionOutputData
 
-class A_PoisonerMove(Action):
+class A_MonkMove(Action):
     
     def __init__(self, players):
         self.players = players
@@ -11,11 +11,11 @@ class A_PoisonerMove(Action):
         return "[Poisoner Moves]"
 
     def TakeAction(self, story_teller, player):
-        # Unpoison all players?
+        # Unprotect all players
 
         player = player.brain.think_pick_player()
-        player.b_is_poisoned = True
+        player.b_is_monk_protected = True
         action_output = ActionOutputData()
-        action_output.data["poisoner_hits"] = player
-        story_teller.black_board.grimoir.data.data["poisoner_hits"] = player     # Repeat for everything that would have a reminder token
+        action_output.data["monk_protects"] = player
+        story_teller.black_board.grimoir.data.data["monk_protects"] = player     # Repeat for everything that would have a reminder token
         return action_output

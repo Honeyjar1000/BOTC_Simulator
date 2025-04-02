@@ -2,7 +2,8 @@ from src.Player.Player import Player
 from src.StoryTeller.StoryTeller import StoryTeller
 import pygame
 import math
-from src.SimVisualiser.RoleDict import RoleImgDict, RED_HERRING, IS_POISONED, BUTLER_PICKED, WASHER_WOMAN_CORRECT, WASHER_WOMAN_WRONG, LIBRARIAN_CORRECT, LIBRARIAN_WRONG, INVESTIGATOR_CORRECT, INVESTIGATOR_WRONG
+from src.SimVisualiser.RoleDict import RoleImgDict, RED_HERRING, IS_POISONED, BUTLER_PICKED, WASHER_WOMAN_CORRECT, WASHER_WOMAN_WRONG, LIBRARIAN_CORRECT, LIBRARIAN_WRONG, INVESTIGATOR_CORRECT, INVESTIGATOR_WRONG, MONK_PROTECTS
+
 
 # Constants
 WIDTH, HEIGHT = 1200 // 1.5, 1200 // 1.5
@@ -77,6 +78,10 @@ class GameVisualiser:
         self.investigator_info_wrong = pygame.image.load(INVESTIGATOR_WRONG)
         self.investigator_info_wrong = self.create_circular_image(self.investigator_info_wrong)
         self.investigator_info_wrong = pygame.transform.scale(self.investigator_info_wrong, (50, 50))
+
+        self.monk_protects = pygame.image.load(MONK_PROTECTS)
+        self.monk_protects = self.create_circular_image(self.monk_protects)
+        self.monk_protects = pygame.transform.scale(self.monk_protects, (50, 50))
 
 
 
@@ -179,6 +184,7 @@ class GameVisualiser:
         librarian_wrong_player = self.story_teller.black_board.grimoir.data.data.get("librarian_info_wrong")
         investigator_correct_player = self.story_teller.black_board.grimoir.data.data.get("investigator_info_correct")
         investigator_wrong_player = self.story_teller.black_board.grimoir.data.data.get("investigator_info_wrong")
+        monk_protects_player = self.story_teller.black_board.grimoir.data.data.get("monk_protects")
 
 
 
@@ -191,6 +197,7 @@ class GameVisualiser:
         librarian_wrong_entity = next((p[0] for p in self.player_vis_entity if p[1] == librarian_wrong_player), None)
         investigator_correct_entity = next((p[0] for p in self.player_vis_entity if p[1] == investigator_correct_player), None)
         investigator_wrong_entity = next((p[0] for p in self.player_vis_entity if p[1] == investigator_wrong_player), None)
+        monk_protects_entity = next((p[0] for p in self.player_vis_entity if p[1] == monk_protects_player), None)
 
 
         token_map = [
@@ -202,7 +209,8 @@ class GameVisualiser:
             (librarian_correct_entity, self.librarian_info_correct),
             (librarian_wrong_entity, self.librarian_info_wrong),
             (investigator_correct_entity, self.investigator_info_correct),
-            (investigator_wrong_entity, self.investigator_info_wrong)
+            (investigator_wrong_entity, self.investigator_info_wrong),
+            (monk_protects_entity, self.monk_protects)
         ]
 
 

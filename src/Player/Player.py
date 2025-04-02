@@ -10,7 +10,7 @@ class Player():
         self.brain = Brain(black_board=self.bb)
         self.alive = True
         self.b_is_poisoned = False
-
+        self.b_is_monk_protected = False
 
     def WakeAtNight(self, story_teller, action):
         print(f'{self.player_name} takes action {str(action)}')

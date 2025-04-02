@@ -20,6 +20,7 @@ from src.StoryTeller.BTNodes.NodeST_SpyMoves import NodeST_SpyMoves
 from src.StoryTeller.BTNodes.NodeST_EmpathMove import NodeST_EmpathMove
 from src.StoryTeller.BTNodes.NodeST_FortuneTellerMove import NodeST_FortuneTellerMove
 from src.StoryTeller.BTNodes.NodeST_Butler import NodeST_Butler
+from src.StoryTeller.BTNodes.NodeST_MonkMove import NodeST_MonkMove
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 from src.StoryTeller.BTNodes.NodeST_ExecutePlayer import NodeST_ExecutePlayer
 
@@ -127,6 +128,10 @@ class StoryTellerBT:
         
         # Poisoner
         node_poisoner_moves_2 = NodeST_PoisonerMove("Poisoner Moves", story_teller=self.story_teller)
+        node_wait_14 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Monk
+        node_poisoner_moves_2 = NodeST_MonkMove("Monk Moves", story_teller=self.story_teller)
         node_wait_14 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Spy

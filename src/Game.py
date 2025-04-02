@@ -4,6 +4,7 @@ from src.Utils.CreatePlayers import *
 from src.SimVisualiser.GameVisualiser import GameVisualiser
 import time
 import pygame
+from src.Utils.FindPlayer import GetDemonPlayers
 
 class Game:
 
@@ -106,17 +107,18 @@ class Game:
         alive_players = [p for p in self.players.values() if p.alive]
         alive_count = len(alive_players)
 
-        demon_player = next((p for p in self.players.values() if p.character.character_type == "Demon"), None)
+        demon_players = GetDemonPlayers(self.story_teller.black_board.players)
+        b_demon_is_alive = False
+        for demon in demon_players:
+            if demon.alive == True:
+                b_demon_is_alive = True
 
-        if demon_player is None:
-            return None  # Safety check
-        if not demon_player.alive:
+        if not b_demon_is_alive:
             print("\n🎉 Good wins! The demon is dead.\n")
             return "GOOD"
-        if alive_count == 2:
-            if demon_player in alive_players:
-                print("\n😈 Evil wins! Only two players left and the demon survives.\n")
-                return "EVIL"
+        if (alive_count == 2) and (b_demon_is_alive == True):
+            print("\n😈 Evil wins! Only two players left and the demon survives.\n")
+            return "EVIL"
         if self.story_teller.black_board.b_saint_executed:
             print("\n😈 Evil wins! the saint has been executed.\n")
             return "EVIL"
@@ -145,5 +147,6 @@ class Game:
             s += f'\n\n{red_herring} is the Red Herring\n'
         s+='\n\n---------------------------------------------------\n'
         print(s)
+
 
     

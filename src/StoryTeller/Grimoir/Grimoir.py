@@ -17,6 +17,7 @@ class Grimoir:
         action_output.data["librarian_info_wrong"] = self.data.data["librarian_info_wrong"]
         action_output.data["investigator_info_correct"] = self.data.data["investigator_info_correct"]
         action_output.data["investigator_info_wrong"] = self.data.data["investigator_info_wrong"]
+        action_output.data["monk_protects"] = self.data.data["monk_protects"]
 
         
         

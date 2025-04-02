@@ -26,6 +26,7 @@ class BlackBoard:
             "librarian_info_wrong":None,
             "investigator_info_correct":None,
             "investigator_info_wrong":None,
+            "monk_protects":None,
             "player_roles": []
         }
 
@@ -52,6 +53,7 @@ class BlackBoard:
             "librarian_info_wrong":"Wrong librarian info is ",
             "investigator_info_correct":"Correct investigator info is ",
             "investigator_info_wrong":"Wrong investigator info is ",
+            "monk_protects":"Monk is protecting",
             "player_roles": "Roles of other players are "
         }
 

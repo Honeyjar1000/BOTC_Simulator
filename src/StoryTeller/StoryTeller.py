@@ -1,7 +1,7 @@
 from src.StoryTeller.StoryTellerBT import StoryTellerBT
 from src.StoryTeller.StoryTellerBB import StoryTellerBB
 from src.Characters.EnumCharacter import Characters
-from src.Utils.FindPlayer import CheckIfCharacterInPlay
+from src.Utils.FindPlayer import CheckIfCharacterInPlay, GetAlivePlayersCount
 import random
 
 class StoryTeller:
@@ -38,3 +38,15 @@ class StoryTeller:
                 if (player.character.alignment == 'Good') and (type(player.character) != Characters.RECLUSE):
                     good_players.append(player)
             self.black_board.grimoir.data.data["red_herring"] = random.sample(good_players, 1)[0]
+
+    def check_scarlet_woman_pass(self, executed_player):
+        print("WE HERE 1")
+        if type(executed_player.character) == Characters.IMP.value:
+            print("WE HERE 2")
+            alive_player_count = GetAlivePlayersCount(self.black_board.players)
+            if alive_player_count >= 5:
+                print("WE HERE 3")
+                b_sw_in_play, sw_player = CheckIfCharacterInPlay(Characters.SCARLET_WOMAN, self.black_board.players)
+                if (b_sw_in_play == True) and (sw_player.alive == True):
+                    sw_player.character = Characters.IMP.value()
+                    print("WE HERE 4", sw_player.character)

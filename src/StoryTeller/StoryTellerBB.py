@@ -19,3 +19,5 @@ class StoryTellerBB:
         self.b_in_townsquare = False
         self.grimoir = Grimoir()
         self.b_saint_executed = False
+        self.executed_today = None
+

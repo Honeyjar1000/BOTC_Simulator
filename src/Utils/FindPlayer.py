@@ -48,7 +48,7 @@ def GetMinionPlayers(players):
             player_minions.append(player)
     return player_minions
 
-def GetDemonPlayer(players):
+def GetDemonPlayers(players):
 
     ##########################################################
     ##########################################################
@@ -58,14 +58,19 @@ def GetDemonPlayer(players):
     ###     Inputs
     ###         - player_dict : dictionary of all players
     ###     Outputs
-    ###         - A Player that is the demon
+    ###         - A list of players that are role Imp
     ###
     ##########################################################
     ##########################################################
 
-    b_in_play, player = CheckIfCharacterInPlay(Characters.IMP, players)
-    if b_in_play:
-        return player
+    demon_players = []
+    for (i, key) in enumerate(players):
+        player = players[key]
+        if type(player.character) == Characters.IMP.value:
+            demon_players.append(player)
+
+    if len(demon_players) > 0:
+        return demon_players
     else:
         print("Error: Can't find demon in Utils.FindPlayer.GetDemonPlayer")
     return None
@@ -312,3 +317,10 @@ def CheckPlayerIsDemonFortuneTeller(player, red_herring):
         if random.random() > 0.3:
             return True
     return False
+
+def GetAlivePlayersCount(players:dict):
+    count = 0
+    for (i,key) in enumerate(players):
+        if players[key].alive:
+            count +=1 
+    return count
