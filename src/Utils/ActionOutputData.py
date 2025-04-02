@@ -22,5 +22,6 @@ class ActionOutputData:
             "investigator_info_correct":None,
             "investigator_info_wrong":None,
             "monk_protects":None,
+            "demon_picks":None,
             "player_roles": {}
         }

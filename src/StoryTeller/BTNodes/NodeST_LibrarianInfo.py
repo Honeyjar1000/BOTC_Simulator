@@ -21,7 +21,7 @@ class NodeST_LibrarianInfo(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, librarian_player = CheckIfCharacterInPlay(Characters.LIBRARIAN, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and librarian_player.alive:
             action = A_LibrarianInfo(self.story_teller.black_board.players)
             librarian_player.WakeAtNight(story_teller=self.story_teller, action=action)
             librarian_player.bb.print_beliefs()

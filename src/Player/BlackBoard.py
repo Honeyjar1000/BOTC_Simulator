@@ -27,6 +27,7 @@ class BlackBoard:
             "investigator_info_correct":None,
             "investigator_info_wrong":None,
             "monk_protects":None,
+            "demon_picks":None,
             "player_roles": []
         }
 
@@ -54,6 +55,7 @@ class BlackBoard:
             "investigator_info_correct":"Correct investigator info is ",
             "investigator_info_wrong":"Wrong investigator info is ",
             "monk_protects":"Monk is protecting",
+            "demon_picks":"Demon picks",
             "player_roles": "Roles of other players are "
         }
 

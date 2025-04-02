@@ -21,6 +21,7 @@ class NodeST_ConditionDay(py_trees.behaviour.Behaviour):
             condition = True
 
         if condition:
+            print("######################################### NEW DAY #########################################")
             return py_trees.common.Status.SUCCESS
         else:
             return py_trees.common.Status.FAILURE

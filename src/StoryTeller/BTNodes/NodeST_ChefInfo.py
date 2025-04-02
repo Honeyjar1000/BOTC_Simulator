@@ -21,7 +21,7 @@ class NodeST_ChefInfo(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, chef_player = CheckIfCharacterInPlay(Characters.CHEF, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and chef_player.alive:
             action = A_ChefInfo(self.story_teller.black_board.players)
             chef_player.WakeAtNight(story_teller=self.story_teller, action=action)
             chef_player.bb.print_beliefs()

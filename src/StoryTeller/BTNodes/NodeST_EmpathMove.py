@@ -22,7 +22,7 @@ class NodeST_EmpathMove(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, empath_player = CheckIfCharacterInPlay(Characters.EMPATH, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and empath_player.alive:
             action = A_EmpathMove(self.story_teller.black_board.players)
             empath_player.WakeAtNight(story_teller=self.story_teller, action=action)
             empath_player.bb.print_beliefs()

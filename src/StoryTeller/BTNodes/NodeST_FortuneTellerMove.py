@@ -20,10 +20,10 @@ class NodeST_FortuneTellerMove(py_trees.behaviour.Behaviour):
         ###########################################
         #print(f"Executing: {self.name}")
         
-        b_in_play, empath_player = CheckIfCharacterInPlay(Characters.FORTUNE_TELLER, self.story_teller.black_board.players)
-        if b_in_play:
+        b_in_play, fortune_teller_player = CheckIfCharacterInPlay(Characters.FORTUNE_TELLER, self.story_teller.black_board.players)
+        if b_in_play and fortune_teller_player.alive:
             action = A_FortuneTellerMove(self.story_teller.black_board.players)
-            empath_player.WakeAtNight(story_teller=self.story_teller, action=action)
-            empath_player.bb.print_beliefs()
+            fortune_teller_player.WakeAtNight(story_teller=self.story_teller, action=action)
+            fortune_teller_player.bb.print_beliefs()
         return py_trees.common.Status.SUCCESS
         

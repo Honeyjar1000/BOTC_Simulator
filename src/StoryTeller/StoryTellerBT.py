@@ -23,6 +23,8 @@ from src.StoryTeller.BTNodes.NodeST_Butler import NodeST_Butler
 from src.StoryTeller.BTNodes.NodeST_MonkMove import NodeST_MonkMove
 from src.StoryTeller.BTNodes.NodeST_Wait import NodeST_Wait
 from src.StoryTeller.BTNodes.NodeST_ExecutePlayer import NodeST_ExecutePlayer
+from src.StoryTeller.BTNodes.NodeST_DemonMove import NodeST_DemonMove
+
 
 class StoryTellerBT:
     def __init__(self, story_teller, wait_duration=1):
@@ -135,20 +137,24 @@ class StoryTellerBT:
         node_wait_14 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Spy
-        node_spy_moves_2 = NodeST_SpyMoves("Spy", story_teller=self.story_teller)
+        node_spy_moves_2 = NodeST_SpyMoves("Spy Moves", story_teller=self.story_teller)
         node_wait_15 = NodeST_Wait("Wait", duration=self.wait_duration)
+
+        # Imp
+        node_imp_moves = NodeST_DemonMove("Imp Moves", story_teller=self.story_teller)
+        node_wait_16 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Empath
         node_empath_moves_2 = NodeST_EmpathMove("Empath Moves", story_teller=self.story_teller)
-        node_wait_16 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_17 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Fortune Teller
         node_fortune_teller_moves_2 = NodeST_FortuneTellerMove("Fortune Teller Moves", story_teller=self.story_teller)
-        node_wait_17 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_18 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         # Butler
         node_butler_moves_2 = NodeST_Butler("Butler Moves", story_teller=self.story_teller)
-        node_wait_18 = NodeST_Wait("Wait", duration=self.wait_duration)
+        node_wait_19 = NodeST_Wait("Wait", duration=self.wait_duration)
 
         node_end_other_night = NodeST_EndOtherNight("End Other Night", story_teller=self.story_teller)
         node_nighttime.add_children([
@@ -157,12 +163,14 @@ class StoryTellerBT:
             node_wait_14,
             node_spy_moves_2,
             node_wait_15,
-            node_empath_moves_2,
+            node_imp_moves,
             node_wait_16,
-            node_fortune_teller_moves_2,
+            node_empath_moves_2,
             node_wait_17,
-            node_butler_moves_2,
+            node_fortune_teller_moves_2,
             node_wait_18,
+            node_butler_moves_2,
+            node_wait_19,
             node_end_other_night])
 
         #############################

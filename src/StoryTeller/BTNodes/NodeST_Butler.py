@@ -22,7 +22,7 @@ class NodeST_Butler(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, butler_player = CheckIfCharacterInPlay(Characters.BUTLER, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and butler_player.alive:
             action = A_ButlerMove(self.story_teller.black_board.players)
             butler_player.WakeAtNight(story_teller=self.story_teller, action=action)
             butler_player.bb.print_beliefs()

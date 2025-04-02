@@ -2,7 +2,7 @@ from src.Player.Player import Player
 from src.StoryTeller.StoryTeller import StoryTeller
 import pygame
 import math
-from src.SimVisualiser.RoleDict import RoleImgDict, RED_HERRING, IS_POISONED, BUTLER_PICKED, WASHER_WOMAN_CORRECT, WASHER_WOMAN_WRONG, LIBRARIAN_CORRECT, LIBRARIAN_WRONG, INVESTIGATOR_CORRECT, INVESTIGATOR_WRONG, MONK_PROTECTS
+from src.SimVisualiser.RoleDict import RoleImgDict, RED_HERRING, IS_POISONED, BUTLER_PICKED, WASHER_WOMAN_CORRECT, WASHER_WOMAN_WRONG, LIBRARIAN_CORRECT, LIBRARIAN_WRONG, INVESTIGATOR_CORRECT, INVESTIGATOR_WRONG, MONK_PROTECTS,IMP_PICKS
 
 
 # Constants
@@ -83,6 +83,9 @@ class GameVisualiser:
         self.monk_protects = self.create_circular_image(self.monk_protects)
         self.monk_protects = pygame.transform.scale(self.monk_protects, (50, 50))
 
+        self.imp_picks = pygame.image.load(IMP_PICKS)
+        self.imp_picks = self.create_circular_image(self.imp_picks)
+        self.imp_picks = pygame.transform.scale(self.imp_picks, (50, 50))
 
 
         self.player_vis_entity = []
@@ -146,8 +149,11 @@ class GameVisualiser:
         for i in range(len(self.player_vis_entity)):
             self.player_vis_entity[i][0].update_position(i, len(self.player_vis_entity), self.ROOM_CENTER)
             player_x, player_y = self.player_vis_entity[i][0].x, self.player_vis_entity[i][0].y
-            original_img = self.player_vis_entity[i][2]
             player_obj = self.player_vis_entity[i][1]
+            current_role_img = pygame.image.load(RoleImgDict[type(player_obj.character)])
+            current_role_img = self.create_circular_image(current_role_img)
+            current_role_img = pygame.transform.scale(current_role_img, (90, 90))
+            original_img = current_role_img
             player_img = self.darken_image(original_img) if not player_obj.alive else original_img
 
             img_width, img_height = player_img.get_width(), player_img.get_height()
@@ -185,8 +191,7 @@ class GameVisualiser:
         investigator_correct_player = self.story_teller.black_board.grimoir.data.data.get("investigator_info_correct")
         investigator_wrong_player = self.story_teller.black_board.grimoir.data.data.get("investigator_info_wrong")
         monk_protects_player = self.story_teller.black_board.grimoir.data.data.get("monk_protects")
-
-
+        imp_picks_player = self.story_teller.black_board.grimoir.data.data.get("demon_picks")
 
         red_herring_entity = next((p[0] for p in self.player_vis_entity if p[1] == red_herring_player), None)
         poisoned_entity = next((p[0] for p in self.player_vis_entity if p[1] == poisoned_player), None)
@@ -198,7 +203,8 @@ class GameVisualiser:
         investigator_correct_entity = next((p[0] for p in self.player_vis_entity if p[1] == investigator_correct_player), None)
         investigator_wrong_entity = next((p[0] for p in self.player_vis_entity if p[1] == investigator_wrong_player), None)
         monk_protects_entity = next((p[0] for p in self.player_vis_entity if p[1] == monk_protects_player), None)
-
+        imp_picks_entity = next((p[0] for p in self.player_vis_entity if p[1] == imp_picks_player), None)
+        
 
         token_map = [
             (red_herring_entity, self.red_herring_image),
@@ -210,7 +216,8 @@ class GameVisualiser:
             (librarian_wrong_entity, self.librarian_info_wrong),
             (investigator_correct_entity, self.investigator_info_correct),
             (investigator_wrong_entity, self.investigator_info_wrong),
-            (monk_protects_entity, self.monk_protects)
+            (monk_protects_entity, self.monk_protects),
+            (imp_picks_entity, self.imp_picks)
         ]
 
 

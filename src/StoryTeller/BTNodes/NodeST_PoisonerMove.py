@@ -22,7 +22,7 @@ class NodeST_PoisonerMove(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, poisoner_player = CheckIfCharacterInPlay(Characters.POISONER, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and poisoner_player.alive:
             action = A_PoisonerMove(self.story_teller.black_board.players)
             poisoner_player.WakeAtNight(story_teller=self.story_teller, action=action)
             poisoner_player.bb.print_beliefs()

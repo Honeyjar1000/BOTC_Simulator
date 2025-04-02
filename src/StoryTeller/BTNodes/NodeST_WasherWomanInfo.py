@@ -22,7 +22,7 @@ class NodeST_WasherWomanInfo(py_trees.behaviour.Behaviour):
         #print(f"Executing: {self.name}")
         
         b_in_play, washer_woman_player = CheckIfCharacterInPlay(Characters.WASHER_WOMAN, self.story_teller.black_board.players)
-        if b_in_play:
+        if b_in_play and washer_woman_player.alive:
             action = A_WashWomanInfo(self.story_teller.black_board.players)
             washer_woman_player.WakeAtNight(story_teller=self.story_teller, action=action)
             washer_woman_player.bb.print_beliefs()

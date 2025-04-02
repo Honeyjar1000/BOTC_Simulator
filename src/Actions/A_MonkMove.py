@@ -11,8 +11,11 @@ class A_MonkMove(Action):
         return "[Poisoner Moves]"
 
     def TakeAction(self, story_teller, player):
-        # Unprotect all players
-
+        # Unprotect all 
+        if story_teller.black_board.grimoir.data.data["monk_protects"] is not None:
+            story_teller.black_board.grimoir.data.data["monk_protects"].b_is_monk_protected = False
+        # also when Monk dies - remove protection
+        
         player = player.brain.think_pick_player()
         player.b_is_monk_protected = True
         action_output = ActionOutputData()

@@ -12,7 +12,9 @@ class A_PoisonerMove(Action):
 
     def TakeAction(self, story_teller, player):
         # Unpoison all players?
-
+        if story_teller.black_board.grimoir.data.data["poisoner_hits"] is not None:
+            story_teller.black_board.grimoir.data.data["poisoner_hits"].b_is_poisoned = False
+        # also when poisoner moves, unpoison player
         player = player.brain.think_pick_player()
         player.b_is_poisoned = True
         action_output = ActionOutputData()
