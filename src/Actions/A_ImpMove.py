@@ -36,9 +36,14 @@ class A_ImpMove(Action):
         if picked_player == player:
             minion_players = GetMinionPlayers(story_teller.black_board.players)
             random.shuffle(minion_players)
-            for minion_player in minion_players:
+            i = 0
+            b_found_valid_minion = False
+            while (not b_found_valid_minion) and (i < len(minion_players)):
+                minion_player = minion_players[i]
                 if minion_player.alive == True:
+                    b_found_valid_minion = True
                     story_teller.star_pass(minion_player)
+                i +=1
 
         action_output.data["demon_picks"] = picked_player
         story_teller.black_board.grimoir.data.data["demon_picks"] = picked_player     # Repeat for everything that would have a reminder token

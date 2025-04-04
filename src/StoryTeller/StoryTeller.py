@@ -46,7 +46,7 @@ class StoryTeller:
                 b_sw_in_play, sw_player = CheckIfCharacterInPlay(Characters.SCARLET_WOMAN, self.black_board.players)
                 if (b_sw_in_play == True) and (sw_player.alive == True):
                     sw_player.character = Characters.IMP.value()
-                    sw_player.black_board["player_character"] = Characters.IMP
+                    sw_player.bb.data["player_character"] = Characters.IMP
                     print("Scarlet Woman is now the Imp!")
     
     def star_pass(self, new_imp):
