@@ -1,7 +1,8 @@
 from src.Actions.Action import Action
 from src.Utils.ActionOutputData import ActionOutputData
 from src.Characters.EnumCharacter import Characters
-from src.Utils.FindPlayer import CheckIfCharacterInPlay
+from src.Utils.FindPlayer import CheckIfCharacterInPlay, GetMinionPlayers
+import random
 
 class A_ImpMove(Action):
     
@@ -31,8 +32,14 @@ class A_ImpMove(Action):
             print(f'Imp picks {picked_player} who is the soldier, no kill.')
             return action_output
         
-        # Add star pass
-        
+        # Star pass
+        if picked_player == player:
+            minion_players = GetMinionPlayers(story_teller.black_board.players)
+            random.shuffle(minion_players)
+            for minion_player in minion_players:
+                if minion_player.alive == True:
+                    story_teller.star_pass(minion_player)
+
         action_output.data["demon_picks"] = picked_player
         story_teller.black_board.grimoir.data.data["demon_picks"] = picked_player     # Repeat for everything that would have a reminder token
         picked_player.alive = False
