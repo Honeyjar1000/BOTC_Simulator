@@ -28,7 +28,7 @@ class BlackBoard:
             "investigator_info_wrong":None,
             "monk_protects":None,
             "demon_picks":None,
-            "player_roles": []
+            "player_roles": {}
         }
 
         self.data_desc = {
